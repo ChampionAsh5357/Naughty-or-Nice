@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[35,)"
+
+license="LGPL-3.0-only"
+# issueTrackerURL="https://github.com/ChampionAsh5357/Paranoia/issues"
+
+[[mods]]
+modId="naughtyornice"
+version="${file.jarVersion}"
+displayName="\u00a7cNaughty \u00a7for \u00a7bNice"
+
+# updateJSONURL=""
+# displayURL=""
+# logoFile="logo.png"
+
+# credits=""
+authors="\u00a7bChampionAsh5357"
+
+description="\u00a76Test description."
+
+[[dependencies.naughtyornice]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35.0.18,)"
+    ordering="NONE"
+    side="BOTH"    
+[[dependencies.naughtyornice]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.4, 1.17)"
+    ordering="NONE"
+    side="BOTH"

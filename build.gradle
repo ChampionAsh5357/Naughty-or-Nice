@@ -1,0 +1,159 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+        maven {url = 'https://dist.creeper.host/Sponge/maven' }
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+    id 'maven'
+    id 'signing'
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
+
+String semver = "${major}.${api}.${minor}"
+version = "${mc}-${semver}.${patch}"
+group = "${website}"
+archivesBaseName = "${modId}"
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+compileJava {
+	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+sourceSets {
+	api {
+		java {
+			compileClasspath += main.output
+            runtimeClasspath += main.output
+		}
+	}
+    main.resources.srcDirs += 'src/generated/resources'
+}
+
+configurations {
+	apiCompile.extendsFrom(compile)
+}
+
+minecraft {
+    mappings channel: project.channelType, version: project.mappingVersion
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            arg '-mixin.config=' + modId + '.mixins.json'
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+			mods.create("${modId}").sources(sourceSets.main, sourceSets.api)
+        }
+
+        server {
+            workingDirectory project.file('run')
+            arg '-mixin.config=' + modId + '.mixins.json'
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            mods.create("${modId}").sources(sourceSets.main, sourceSets.api)
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', modId, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
+			mods.create("${modId}").sources(sourceSets.main, sourceSets.api)
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${mc}-${forge}"
+    
+    implementation sourceSets.api.output
+}
+
+jar {
+    from sourceSets.main.output.classesDirs
+    from sourceSets.main.output.resourcesDir
+    from sourceSets.api.output.classesDirs
+    from sourceSets.api.output.resourcesDir
+
+    manifest {
+        attributes([
+            "Specification-Title": "${title}",
+            "Specification-Vendor": "${vendor}",
+            "Specification-Version": "${semver}",
+            "Implementation-Title": "${title}",
+            "Implementation-Version": "${version}",
+            "Implementation-Vendor" : "${vendor}",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "MixinConfigs": "${modId}.mixins.json"
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar') 
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allJava
+    from sourceSets.api.allJava
+}
+
+task apiJar(type: Jar) {
+	classifier = "api"
+	from sourceSets.api.output
+	from sourceSets.api.allJava
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+    archives apiJar
+}
+
+task("uploadJars", dependsOn: "build") {
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "file://${local_maven}")
+                pom.project {
+                    name = "${title}"
+                    description = "${desc}"
+                    licenses {
+                        license {
+                            name = "${license}"
+                            url = "${licenseUrl}"
+                        }
+                    }
+                    developers {
+                        developer {
+                            name = "${vendor}"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign configurations.archives
+}
+
+mixin {
+	add sourceSets.main, "${modId}.refmap.json"
+}

@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "io.github.championash5357.naughtyornice.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "naughtyornice.refmap.json",
+	"mixins": [],
+	"client": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
