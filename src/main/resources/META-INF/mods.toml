@@ -2,16 +2,16 @@ modLoader="javafml"
 loaderVersion="[35,)"
 
 license="LGPL-3.0-only"
-# issueTrackerURL="https://github.com/ChampionAsh5357/Paranoia/issues"
+# issueTrackerURL="https://github.com/ChampionAsh5357/Naughty-or-Nice/issues"
 
 [[mods]]
 modId="naughtyornice"
 version="${file.jarVersion}"
 displayName="\u00a7cNaughty \u00a7for \u00a7bNice"
 
-# updateJSONURL=""
-# displayURL=""
-# logoFile="logo.png"
+updateJSONURL="https://championash5357.github.io/ChampionAsh5357/projects/maven/io/github/championash5357/naughtyornice/update.json"
+displayURL="https://github.com/ChampionAsh5357/Naughty-or-Nice"
+# logoFile=""
 
 # credits=""
 authors="\u00a7bChampionAsh5357"
