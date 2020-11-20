@@ -1,0 +1,5 @@
+{
+  "block.naughtyornice.present": "Present",
+  "naughtyornice.niceness.check": "%1$s has a niceness of %2$s.",
+  "naughtyornice.niceness.check.error": "You cannot check the niceness of a player for another %1$s ticks."
+}

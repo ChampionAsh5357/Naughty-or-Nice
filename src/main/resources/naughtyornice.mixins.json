@@ -4,7 +4,18 @@
 	"package": "io.github.championash5357.naughtyornice.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"refmap": "naughtyornice.refmap.json",
-	"mixins": [],
+	"mixins": [ "CuredZombieVillagerTriggerMixin",
+		"VillagerTradeTriggerMixin",
+		"PiglinTasksMixin",
+		"RaidMixin",
+		"SummonedEntityTriggerMixin",
+		"CatEntityMixin",
+		"IronGolemEntityMixin",
+		"WolfEntityMixin",
+		"AbstractHorseEntityMixin",
+		"LlamaEntityMixin",
+		"EffectMixin"
+	],
 	"client": [],
 	"injectors": {
 		"defaultRequire": 1

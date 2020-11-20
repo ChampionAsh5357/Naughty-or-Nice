@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "naughtyornice:block/present"
+    },
+    "open=true": {
+      "model": "naughtyornice:block/present_open"
+    }
+  }
+}

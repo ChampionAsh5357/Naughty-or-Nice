@@ -15,9 +15,22 @@ plugins {
     id 'maven-publish'
     id 'maven'
     id 'signing'
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
+
+repositories {
+	maven {
+		name "ChampionAsh5357's Maven"
+		url 'https://championash5357.github.io/ChampionAsh5357/projects/maven'
+	}
+	maven {
+		name "Databuddy Maven"
+		url "https://cubicinterpolation.net/maven/"
+	}
+}
 
 String semver = "${major}.${api}.${minor}"
 version = "${mc}-${semver}.${patch}"
@@ -42,10 +55,12 @@ sourceSets {
 
 configurations {
 	apiCompile.extendsFrom(compile)
+	shade
 }
 
 minecraft {
     mappings channel: project.channelType, version: project.mappingVersion
+	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -76,6 +91,10 @@ minecraft {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc}-${forge}"
+    compile fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
+    shade fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
+    compile fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
+	shade fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
     
     implementation sourceSets.api.output
 }
@@ -100,7 +119,19 @@ jar {
     }
 }
 
-jar.finalizedBy('reobfJar') 
+shadowJar {
+	classifier = ''
+	configurations = [project.configurations.shade]
+	relocate 'io.github.championash5357.ashlib', "${project.group}.shadow.io.github.championash5357.ashlib"
+	relocate 'commoble.databuddy', "${project.group}.shadow.commoble.databuddy"
+}
+
+reobf {
+	shadowJar {}
+}
+
+tasks.build.dependsOn reobfShadowJar
+jar.finalizedBy('reobfShadowJar') 
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = "javadoc"

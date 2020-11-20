@@ -1,0 +1,12 @@
+{
+	"child_hurt": -1.0,
+	"child_heal": 0.5,
+	"child_kill": -5.0,
+	"breeding": 0.1,
+	"cure": 0.5,
+	"trade": 0.01,
+	"raid_start": -1.0,
+	"raid_lose": -5.0,
+	"raid_win": 6.0,
+	"farm": 0.01
+}

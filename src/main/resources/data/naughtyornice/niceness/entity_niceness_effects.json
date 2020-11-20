@@ -1,0 +1,115 @@
+{
+	"entries": {
+		"minecraft:wither": {
+			"kill": 7.0,
+			"spawn": -5.0
+		},
+		"minecraft:ender_dragon": {
+			"kill": 10.0,
+			"spawn": -5.0
+		},
+		"minecraft:iron_golem": {
+			"heal": 0.2,
+			"hurt": -0.1,
+			"kill": -1,
+			"spawn": 1.0
+		},
+		"minecraft:snow_golem": {
+			"heal": 0.02,
+			"hurt": -0.01,
+			"kill": -0.1,
+			"spawn": 0.01
+		},
+		"minecraft:player": {
+			"hurt": -0.2,
+			"kill": -2.5
+		},
+		"minecraft:evoker": {
+			"kill": 0.2
+		},
+		"minecraft:illusioner": {
+			"kill": 0.2
+		},
+		"minecraft:pillager": {
+			"kill": 0.2
+		},
+		"minecraft:vindicator": {
+			"kill": 0.2
+		},
+		"minecraft:bat": {
+			"hurt": -0.01,
+			"kill": -0.1
+		},
+		"minecraft:donkey": {
+			"heal": 0.2,
+			"hurt": -0.1,
+			"kill": -1.5
+		},
+		"minecraft:fox": {
+			"hurt": -0.01,
+			"kill": -0.2
+		},
+		"minecraft:horse": {
+			"heal": 0.2,
+			"hurt": -0.1,
+			"kill": -1.5
+		},
+		"minecraft:mule": {
+			"heal": 0.2,
+			"hurt": -0.1,
+			"kill": -1.5
+		},
+		"minecraft:ocelot": {
+			"heal": 0.4,
+			"hurt": -0.2,
+			"kill": -2.5
+		},
+		"minecraft:cat": {
+			"heal": 0.4,
+			"hurt": -0.2,
+			"kill": -2.5
+		},
+		"minecraft:parrot": {
+			"heal": 0.4,
+			"hurt": -0.2,
+			"kill": -2.5
+		},
+		"minecraft:skeleton_horse": {
+			"heal": 0.02,
+			"hurt": -0.01,
+			"kill": -0.1
+		},
+		"minecraft:strider": {
+			"heal": 0.1,
+			"hurt": -0.05,
+			"kill": -0.5
+		},
+		"minecraft:turtle": {
+			"hurt": -0.15,
+			"kill": -1.75
+		},
+		"minecraft:villager": {
+			"heal": 0.2,
+			"hurt": -0.1,
+			"kill": -1
+		},
+		"minecraft:wandering_trader": {
+			"heal": 0.2,
+			"hurt": -0.1,
+			"kill": -1
+		},
+		"minecraft:dolphin": {
+			"hurt": -0.05,
+			"kill": -0.5
+		},
+		"minecraft:wolf": {
+			"heal": 0.4,
+			"hurt": -0.2,
+			"kill": -2.5
+		},
+		"minecraft:panda": {
+			"hurt": -0.01,
+			"kill": -0.2
+		}
+	}
+}
