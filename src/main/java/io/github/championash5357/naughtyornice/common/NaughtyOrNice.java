@@ -24,8 +24,7 @@ import io.github.championash5357.naughtyornice.api.capability.*;
 import io.github.championash5357.naughtyornice.api.event.PlayerHealLivingEvent;
 import io.github.championash5357.naughtyornice.api.present.PresentManager;
 import io.github.championash5357.naughtyornice.client.ClientReference;
-import io.github.championash5357.naughtyornice.common.init.CapabilityRegistrar;
-import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
+import io.github.championash5357.naughtyornice.common.init.*;
 import io.github.championash5357.naughtyornice.common.niceness.NicenessManager;
 import io.github.championash5357.naughtyornice.common.util.LocalizationStrings;
 import io.github.championash5357.naughtyornice.data.client.BlockStates;
@@ -79,8 +78,11 @@ public class NaughtyOrNice {
 
 		new LocalizationHelper(ID, mod, false).createLocalization("en_us")
 		.addBlock(GeneralRegistrar.PRESENT, "Present")
+		.add(LocalizationStrings.SUBTITLE_BLOCK_PRESENT_OPEN, "Present Opening")
 		.add(LocalizationStrings.NICENESS_CHECK, "%1$s has a niceness of %2$s.")
 		.add(LocalizationStrings.NICENESS_CHECK_ERROR, "You cannot check the niceness of a player for another %1$s ticks.")
+		.add(LocalizationStrings.PRESENT_MESSAGE_SINGLE_TNT, "Surprise!")
+		.add(LocalizationStrings.PRESENT_MESSAGE_CREEPER_PARTY, "Creeper Party!")
 		.end();
 
 		mod.addListener(this::common);
@@ -175,9 +177,9 @@ public class NaughtyOrNice {
 		} else if(event.getTarget() instanceof AbstractVillagerEntity) {
 			player.getCapability(CapabilityInstances.NICENESS_CAPABILITY).ifPresent(inst -> {
 				ItemStack stack = player.getHeldItem(event.getHand());
-				double amt = this.getNicenessManager().getVillagerGift(stack);
+				Entity entity = event.getTarget();
+				double amt = this.getNicenessManager().getVillagerGift((AbstractVillagerEntity) entity, stack);
 				if(amt != 0) {
-					Entity entity = event.getTarget();
 					stack.shrink(1);
 					event.setCanceled(true);
 					event.setCancellationResult(ActionResultType.func_233537_a_(player.world.isRemote));

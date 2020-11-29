@@ -28,36 +28,30 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 
 import commoble.databuddy.codec.MapCodecHelper;
-import io.github.championash5357.ashlib.util.CodecHelper;
+import io.github.championash5357.ashlib.serialization.CodecHelper;
 import io.github.championash5357.naughtyornice.api.util.FallbackCodec;
 import io.github.championash5357.naughtyornice.common.util.StackInformation;
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.merchant.villager.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.*;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NicenessManager extends JsonReloadListener {
 
 	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
 	private static final Logger LOGGER = LogManager.getLogger();
-	private static final Lazy<Codec<Map<EntityType<?>, EntityNicenessEffect>>> ENTITY_NICENESS_EFFECTS_CODEC = Lazy.concurrentOf(() -> Codec.simpleMap(CodecHelper.createRegistryObjectCodec(ForgeRegistries.ENTITIES),
-			EntityNicenessEffect.CODEC, IStringSerializable.createKeyable(ForgeRegistries.ENTITIES.getKeys().stream().map(location -> new IStringSerializable() {
-				@Override
-				public String getString() {
-					return location.toString();
-				}
-			}).toArray(IStringSerializable[]::new))).codec());
+	private static final Codec<Map<EntityType<?>, EntityNicenessEffect>> ENTITY_NICENESS_EFFECTS_CODEC = Codec.unboundedMap(CodecHelper.registryObject(ForgeRegistries.ENTITIES), EntityNicenessEffect.CODEC);
 	private static final Codec<Map<String, Double>> GLOBAL_EFFECTS_CODEC = Codec.unboundedMap(Codec.STRING, Codec.DOUBLE);
 	private final Codec<StackInformation> stackInformationCodec = FallbackCodec.create(StackInformation.CODEC, ResourceLocation.CODEC.xmap(location -> this.stackInformation.containsKey(location) ? this.stackInformation.get(location) : new StackInformation(ForgeRegistries.ITEMS.getValue(location), null), StackInformation::getId));
-	private final Codec<Map<StackInformation, Double>> villagerGiftsCodec = MapCodecHelper.makeEntryListCodec(this.stackInformationCodec, Codec.DOUBLE);
+	private final Codec<Map<StackInformation, Map<VillagerProfession, Double>>> villagerGiftsCodec = MapCodecHelper.makeEntryListCodec(this.stackInformationCodec, Codec.unboundedMap(CodecHelper.registryObject(ForgeRegistries.PROFESSIONS), Codec.DOUBLE));
 	private final Map<EntityType<?>, EntityNicenessEffect> entityNicenessEffects = new HashMap<>();
 	private final Map<String, Double> globalEffects = new HashMap<>();
 	private final Map<ResourceLocation, StackInformation> stackInformation = new HashMap<>();
-	private final Map<StackInformation, Double> villagerGifts = new HashMap<>();
+	private final Map<StackInformation, Map<VillagerProfession, Double>> villagerGifts = new HashMap<>();
 	
 	public NicenessManager() {
 		super(GSON, "niceness");
@@ -82,7 +76,7 @@ public class NicenessManager extends JsonReloadListener {
 	
 	private void parseEntityNicenessEffects(JsonObject obj) {
 		if(JSONUtils.getBoolean(obj, "replace", false)) this.entityNicenessEffects.clear();
-		this.entityNicenessEffects.putAll(ENTITY_NICENESS_EFFECTS_CODEC.get().parse(JsonOps.INSTANCE, JSONUtils.getJsonObject(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading entity niceness effects after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+		this.entityNicenessEffects.putAll(ENTITY_NICENESS_EFFECTS_CODEC.parse(JsonOps.INSTANCE, JSONUtils.getJsonObject(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading entity niceness effects after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
 	}
 	
 	private void parseGlobalEffects(JsonObject obj) {
@@ -95,7 +89,7 @@ public class NicenessManager extends JsonReloadListener {
 	
 	private void parseVillagerGifts(JsonObject obj) {
 		if(JSONUtils.getBoolean(obj, "replace", false)) this.villagerGifts.clear();
-		this.villagerGifts.putAll(this.villagerGiftsCodec.parse(JsonOps.INSTANCE, JSONUtils.getJsonObject(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+		this.villagerGifts.putAll(this.villagerGiftsCodec.parse(JsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
 	}
 	
 	public double getEntityHurt(EntityType<?> type, String... globalEffects) {
@@ -114,8 +108,12 @@ public class NicenessManager extends JsonReloadListener {
 		return this.entityNicenessEffects.getOrDefault(type, EntityNicenessEffect.INSTANCE).getSpawn() + this.getGlobalEffects(globalEffects);
 	}
 	
-	public double getVillagerGift(ItemStack stack) {
-		return this.villagerGifts.getOrDefault(stack, 0.0);
+	public double getVillagerGift(AbstractVillagerEntity villager, ItemStack stack) {
+		@SuppressWarnings("unlikely-arg-type")
+		Map<VillagerProfession, Double> professions = this.villagerGifts.entrySet().stream().filter(entry -> entry.getKey().equals(stack)).findFirst().map(entry -> entry.getValue()).orElse(null);
+		if(professions == null) return 0.0;
+		else if(villager instanceof VillagerEntity) return professions.getOrDefault(((VillagerEntity) villager).getVillagerData().getProfession(), professions.getOrDefault(VillagerProfession.NONE, 0.0));
+		else return professions.getOrDefault(VillagerProfession.NONE, 0.0);
 	}
 	
 	public double getGlobalEffects(String... globalEffects) {

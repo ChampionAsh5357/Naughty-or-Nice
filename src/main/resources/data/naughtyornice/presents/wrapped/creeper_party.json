@@ -1,0 +1,77 @@
+{
+	"type": "naughtyornice:multi_chance",
+	"config": [
+		{
+			"k": {
+				"type": "naughtyornice:entity",
+				"config": [
+					{
+						"type": "minecraft:creeper",
+						"position": [ 1, 0, 1 ],
+						"nbt": {
+							"powered": true
+						}
+					},
+					{
+						"type": "minecraft:creeper",
+						"position": [ -1, 0, 1 ],
+						"nbt": {
+							"powered": true
+						}
+					},
+					{
+						"type": "minecraft:creeper",
+						"position": [ 1, 0, -1 ],
+						"nbt": {
+							"powered": true
+						}
+					},
+					{
+						"type": "minecraft:creeper",
+						"position": [ -1, 0, -1 ],
+						"nbt": {
+							"powered": true
+						}
+					},
+					{
+						"type": "minecraft:creeper",
+						"position": [ 1, 0, 0 ]
+					},
+					{
+						"type": "minecraft:creeper",
+						"position": [ -1, 0, 0 ]
+					},
+					{
+						"type": "minecraft:creeper",
+						"position": [ 0, 0, 1 ]
+					},
+					{
+						"type": "minecraft:creeper",
+						"position": [ 0, 0, -1 ]
+					}
+				]
+			},
+			"v": 1.0
+		},
+		{
+			"k": {
+				"type": "naughtyornice:command",
+				"config": "tellraw @s {\"translate\": \"naughtyornice.present.message.creeper_party\", \"color\": \"green\", \"bold\": true}"
+			},
+			"v": 1.0
+		},
+		{
+			"k": {
+				"type": "naughtyornice:structure",
+				"config": {
+					"name": "minecraft:empty",
+					"player_position": {
+						"position": [ 0, 0, 0 ]
+					},
+					"processors": "minecraft:empty"
+				}
+			},
+			"v": 0.5
+		}
+	]
+}

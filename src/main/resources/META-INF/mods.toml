@@ -13,11 +13,14 @@ updateJSONURL="https://championash5357.github.io/ChampionAsh5357/projects/maven/
 displayURL="https://github.com/ChampionAsh5357/Naughty-or-Nice"
 # logoFile=""
 
-credits="Thank you for the following ideas:
+credits="Shadowed Jars:
+Databuddy by \u00a7aCommoble \u00a7f(MIT License)
+Thank you for the following ideas:
 \u00a73Guy\u00a7f: \u00a76Some foundational mechanics of the niceness system."
 authors="\u00a7bChampionAsh5357"
 
-description="\u00a76Test description."
+description="\u00a7oYou better watch out, you better not cry.
+\u00a7r\u00a76Welcome to \u00a7cNaughty \u00a7for \u00a7bNice\u00a76! This mod adds a niceness meter into the game. By itself, it does absolutely nothing. However, the outcome of your presents is determined by how nice you are. Some of them won't even open if you aren't nice enough! So, be prepared, and make sure that you are not naughty!"
 
 [[dependencies.naughtyornice]]
     modId="forge"

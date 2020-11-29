@@ -1,5 +1,8 @@
 {
   "block.naughtyornice.present": "Present",
   "naughtyornice.niceness.check": "%1$s has a niceness of %2$s.",
-  "naughtyornice.niceness.check.error": "You cannot check the niceness of a player for another %1$s ticks."
+  "naughtyornice.niceness.check.error": "You cannot check the niceness of a player for another %1$s ticks.",
+  "naughtyornice.present.message.creeper_party": "Creeper Party!",
+  "naughtyornice.present.message.single_tnt": "Surprise!",
+  "naughtyornice.subtitle.block.present.open": "Present Opening"
 }

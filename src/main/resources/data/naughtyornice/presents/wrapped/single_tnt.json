@@ -1,0 +1,27 @@
+{
+	"type": "naughtyornice:multi_chance",
+	"config": [
+		{
+			"k": {
+				"type": "naughtyornice:entity",
+				"config": [
+					{
+						"type": "minecraft:tnt",
+						"position": [ 0, 0, 0 ],
+						"nbt": {
+							"Fuse": 5
+						}
+					}
+				]
+			},
+			"v": 1.0
+		},
+		{
+			"k": {
+				"type": "naughtyornice:command",
+				"config": "tellraw @s {\"translate\": \"naughtyornice.present.message.single_tnt\", \"color\": \"dark_red\", \"bold\": true}"
+			},
+			"v": 1.0
+		}
+	]
+}

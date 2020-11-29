@@ -17,18 +17,20 @@
 
 package io.github.championash5357.naughtyornice.api.capability;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import io.github.championash5357.naughtyornice.api.present.PresentManager;
 import io.github.championash5357.naughtyornice.api.present.WrappedPresent;
 import io.github.championash5357.naughtyornice.common.block.PresentBlock;
+import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
 import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
 import io.github.championash5357.naughtyornice.common.util.LocalizationStrings;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
@@ -78,8 +80,13 @@ public class Niceness implements INiceness {
 
 	@Override
 	public double getNiceness() {
-		return this.niceness;
+		return this.niceness + this.getLuckModifier();
 	}
+	
+	private double getLuckModifier() {
+		return this.player.getLuck();
+	}
+
 	@Override
 	public void getNiceness(PlayerEntity interactedPlayer) {
 		interactedPlayer.getCapability(CapabilityInstances.NICENESS_CAPABILITY).ifPresent(inst -> {
@@ -96,24 +103,26 @@ public class Niceness implements INiceness {
 	public boolean openPresent(PresentTileEntity te) {
 		if(player == null || player.world.isRemote) return false;
 		this.presentPos = null; //TODO: Remove once done testing
+		this.present = null;
 		if(this.present != null || this.presentPos != null) return false;
-		//if(te.getNiceness() > 0 && this.niceness - te.getNiceness() <= 0) return false;
-		//Optional<WrappedPresent<?, ?>> opt = PresentManager.getInstance().getWrappedPresent(this.niceness);
-		//if(!opt.isPresent()) return false;
-		//if(te.getNiceness() > 0) this.changeNiceness(-te.getNiceness());
-		//this.present = opt.get();
+		//if(te.getNiceness() > 0 && this.getNiceness() - te.getNiceness() <= 0) return false;
+		Optional<WrappedPresent<?, ?>> opt = PresentManager.getInstance().getWrappedPresent(this.getNiceness());
+		if(!opt.isPresent()) return false;
+		//if(te.getNiceness() > 0) this.changeNiceness(this.getLuckModifier() - te.getNiceness());
+		this.present = opt.get();
 		this.presentPos = te.getPos();
 		te.setEntity(this.player);
 		this.player.world.setBlockState(this.presentPos, te.getBlockState().with(PresentBlock.OPEN, true));
+		this.player.world.playSound((PlayerEntity) null, this.presentPos, GeneralRegistrar.BLOCK_PRESENT_OPEN.get(), SoundCategory.BLOCKS, 1.0f, 1.0f);
 		return true;
 	}
 	
 	@Override
 	public void unwrap() {
 		if(player == null || player.world.isRemote) return;
-		/*if(!this.present.give((ServerPlayerEntity) this.player, this.presentPos)) {
+		if(!this.present.give((ServerPlayerEntity) this.player, this.presentPos)) {
 			throw new IllegalStateException("The specified present could not be opened: " + PresentManager.getInstance().reversePresent(this.present).toString());
-		}*/
+		}
 		this.present = null;
 		this.presentPos = null;
 	}

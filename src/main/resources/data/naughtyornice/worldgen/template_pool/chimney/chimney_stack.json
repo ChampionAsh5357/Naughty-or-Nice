@@ -1,0 +1,24 @@
+{
+  "name": "naughtyornice:chimney/chimney_stack",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "naughtyornice:chimney/chimney_stack",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "naughtyornice:chimney/chimney_top",
+        "processors": "naughtyornice:present_single",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

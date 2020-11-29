@@ -1,0 +1,20 @@
+{
+	"type": "naughtyornice:entity",
+	"config": [
+		{
+			"type": "minecraft:area_effect_cloud",
+			"position": [ 0, 0, 0 ],
+			"nbt": {
+				"Radius": 10,
+				"Duration": 600,
+				"Effects": [
+					{
+						"Id": 27,
+						"Amplifier": 2,
+						"Duration": 2400
+					}
+				]
+			}
+		}
+	]
+}

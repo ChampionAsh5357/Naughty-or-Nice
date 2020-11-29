@@ -1,0 +1,6 @@
+{
+	"block.present.open": {
+		"subtitle": "naughtyornice.subtitle.block.present.open",
+		"sounds": [ "naughtyornice:present_open" ]
+	}
+}

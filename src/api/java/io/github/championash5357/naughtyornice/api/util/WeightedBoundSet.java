@@ -54,16 +54,14 @@ public class WeightedBoundSet<T> {
 	 * @param value The value to construct the element around
 	 * @return The associated, valid element
 	 */
-	@SuppressWarnings("unlikely-arg-type")
 	public Optional<T> getRandomElement(double value) {
-		Map<ManyToOneInteger, T> validElements = new HashMap<>();
-		int size = 0;
+		Map<Integer, T> validElements = new HashMap<>();
 		for(Entry<T, WeightedElement> entry : this.map.entrySet()) {
 			if(entry.getValue().test(value)) {
-				validElements.put(new ManyToOneInteger(validElements.size(), IntStream.range(size, size + entry.getValue().getWeight()).toArray()), entry.getKey());
-				size += entry.getValue().getWeight();
+				int size = validElements.size();
+				IntStream.range(size, size + entry.getValue().getWeight()).forEach(i -> validElements.put(i, entry.getKey()));
 			}
 		}
-		return size > 0 ? Optional.of(validElements.get(RANDOM.nextInt(size))) : Optional.empty();
+		return validElements.size() > 0 ? Optional.of(validElements.get(RANDOM.nextInt(validElements.size()))) : Optional.empty();
 	}
 }

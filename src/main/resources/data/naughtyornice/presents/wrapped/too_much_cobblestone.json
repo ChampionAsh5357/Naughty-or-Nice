@@ -1,0 +1,8 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "naughtyornice:chests/too_much_cobblestone",
+		"size": 20,
+		"loot_spawn_location": "inventory"
+	}
+}

@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import io.github.championash5357.ashlib.util.CodecHelper;
+import io.github.championash5357.ashlib.serialization.CodecHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,7 +34,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class StackInformation {
 
 	public static final Codec<StackInformation> CODEC = RecordCodecBuilder.create(builder -> {
-		return builder.group(CodecHelper.createRegistryObjectCodec(ForgeRegistries.ITEMS).fieldOf("item").forGetter(inst -> inst.item),
+		return builder.group(CodecHelper.registryObject(ForgeRegistries.ITEMS).fieldOf("item").forGetter(inst -> inst.item),
 				CompoundNBT.CODEC.optionalFieldOf("tag", null).forGetter(inst -> inst.tag))
 				.apply(builder, StackInformation::new);
 	});
@@ -75,5 +75,10 @@ public class StackInformation {
 		if(o instanceof ItemStack) return this.test((ItemStack) o);
 		else if(o instanceof StackInformation) return this.item.equals(((StackInformation) o).item) && this.tag.equals(((StackInformation) o).tag);
 		else return super.equals(o);
+	}
+	
+	@Override
+	public String toString() {
+		return "StackInformation[" + this.item + ", " + (this.tag == null ? "empty" : this.tag) + "]";
 	}
 }

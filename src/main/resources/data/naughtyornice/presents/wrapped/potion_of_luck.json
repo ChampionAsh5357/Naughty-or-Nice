@@ -1,0 +1,6 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "naughtyornice:chests/potion_of_luck"
+	}
+}

@@ -18,8 +18,13 @@
 package io.github.championash5357.naughtyornice.common.util;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class Helper {
 
 	public static final Random RANDOM = new Random();
+	
+	public static <T> Supplier<T> supplierFunction(T t) {
+		return () -> t;
+	}
 }

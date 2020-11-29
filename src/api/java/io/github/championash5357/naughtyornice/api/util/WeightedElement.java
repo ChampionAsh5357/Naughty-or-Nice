@@ -34,8 +34,8 @@ public class WeightedElement implements Predicate<Double> {
 	 */
 	public static final Codec<WeightedElement> CODEC = RecordCodecBuilder.create(builder -> {
 		return builder.group(Codec.INT.fieldOf("weight").forGetter(WeightedElement::getWeight),
-				Codec.DOUBLE.fieldOf("min").forGetter(element -> element.min),
-				Codec.DOUBLE.fieldOf("max").forGetter(element -> element.max))
+				Codec.DOUBLE.optionalFieldOf("min", Double.NEGATIVE_INFINITY).forGetter(element -> element.min),
+				Codec.DOUBLE.optionalFieldOf("max", Double.POSITIVE_INFINITY).forGetter(element -> element.max))
 				.apply(builder, WeightedElement::new);
 	});
 	/**

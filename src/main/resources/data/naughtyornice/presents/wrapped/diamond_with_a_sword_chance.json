@@ -1,0 +1,7 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "naughtyornice:chests/diamond_with_a_sword_chance",
+		"size": 5
+	}
+}

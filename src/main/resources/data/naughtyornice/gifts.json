@@ -1,0 +1,71 @@
+{
+	"entries": [
+		{
+			"k": "naughtyornice:coal",
+			"v": {
+				"weight": 100,
+				"max": 20.0
+			}
+		},
+		{
+			"k": "naughtyornice:too_much_cobblestone",
+			"v": {
+				"weight": 50
+			}
+		},
+		{
+			"k": "naughtyornice:iron_ingots",
+			"v": {
+				"weight": 30,
+				"min": 25.0
+			}
+		},
+		{
+			"k": "naughtyornice:small_christmas_tree",
+			"v": {
+				"weight": 30
+			}
+		},
+		{
+			"k": "naughtyornice:chimney",
+			"v": {
+				"weight": 50
+			}
+		},
+		{
+			"k": "naughtyornice:potion_of_luck",
+			"v": {
+				"weight": 15,
+				"min": 15.0
+			}
+		},
+		{
+			"k": "naughtyornice:diamond_with_a_sword_chance",
+			"v": {
+				"weight": 10,
+				"min": 50.0
+			}
+		},
+		{
+			"k": "naughtyornice:potion_of_unluck",
+			"v": {
+				"weight": 20,
+				"max": 0.0
+			}
+		},
+		{
+			"k": "naughtyornice:single_tnt",
+			"v": {
+				"weight": 40,
+				"max": 10.0
+			}
+		},
+		{
+			"k": "naughtyornice:creeper_party",
+			"v": {
+				"weight": 30,
+				"max": -10.0
+			}
+		}
+	]
+}

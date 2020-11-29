@@ -23,4 +23,7 @@ public class LocalizationStrings {
 
 	public static final String NICENESS_CHECK = NaughtyOrNice.ID + ".niceness.check";
 	public static final String NICENESS_CHECK_ERROR = NaughtyOrNice.ID + ".niceness.check.error";
+	public static final String SUBTITLE_BLOCK_PRESENT_OPEN = NaughtyOrNice.ID + ".subtitle.block.present.open";
+	public static final String PRESENT_MESSAGE_SINGLE_TNT = NaughtyOrNice.ID + ".present.message.single_tnt";
+	public static final String PRESENT_MESSAGE_CREEPER_PARTY = NaughtyOrNice.ID + ".present.message.creeper_party";
 }

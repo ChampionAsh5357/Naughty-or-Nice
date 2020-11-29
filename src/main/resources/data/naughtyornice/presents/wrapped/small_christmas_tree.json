@@ -1,0 +1,9 @@
+{
+	"type": "naughtyornice:structure",
+	"config": {
+		"name": "naughtyornice:trees/small_christmas_tree",
+		"ignore_entities": true,
+		"offset": [ -2, 0, -2 ],
+		"processors": "naughtyornice:present_single"
+	}
+}

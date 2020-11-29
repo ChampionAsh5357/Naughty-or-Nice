@@ -1,0 +1,8 @@
+{
+	"type": "naughtyornice:jigsaw",
+	"config": {
+		"start_pool": "naughtyornice:chimney/start_pool",
+		"size": 10,
+		"offset": [ -1, 0, -1 ]
+	}
+}

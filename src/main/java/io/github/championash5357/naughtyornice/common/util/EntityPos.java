@@ -9,6 +9,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import io.github.championash5357.naughtyornice.common.codec.PrimitiveCodecs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.gen.Heightmap.Type;
@@ -63,7 +64,10 @@ public class EntityPos {
 	
 	public void applyPositionAndRotation(Entity entity, BlockPos referencePos) {
 		double x = referencePos.getX() + pos.x, z = referencePos.getZ() + pos.z;
-		entity.setPositionAndRotation(x, useWorldHeight ? entity.world.getHeight(Type.MOTION_BLOCKING, (int) x, (int) z) : (referencePos.getY() + pos.y), z, this.yaw.orElse(entity.rotationYaw), this.pitch.orElse(entity.rotationPitch));
+		double offset = (referencePos.getX() == x && referencePos.getZ() == z) ? 1 : 0;
+		double y = useWorldHeight ? entity.world.getHeight(Type.MOTION_BLOCKING, (int) x, (int) z) - offset : (referencePos.getY() + pos.y);
+		if(entity instanceof ServerPlayerEntity) ((ServerPlayerEntity) entity).connection.setPlayerLocation(x, y, z, this.yaw.orElse(entity.rotationYaw), this.pitch.orElse(entity.rotationPitch));
+		else entity.setPositionAndRotation(x, y, z, this.yaw.orElse(entity.rotationYaw), this.pitch.orElse(entity.rotationPitch));
 	}
 
 	private static DataResult<double[]> validateDoubleStreamSize(DoubleStream stream, int size) {

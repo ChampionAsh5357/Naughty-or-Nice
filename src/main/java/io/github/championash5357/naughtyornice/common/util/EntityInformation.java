@@ -3,7 +3,7 @@ package io.github.championash5357.naughtyornice.common.util;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import io.github.championash5357.ashlib.util.CodecHelper;
+import io.github.championash5357.ashlib.serialization.CodecHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class EntityInformation {
 
 	public static final Codec<EntityInformation> CODEC = RecordCodecBuilder.create(builder -> {
-		return builder.group(CodecHelper.createRegistryObjectCodec(ForgeRegistries.ENTITIES).fieldOf("type").forGetter(EntityInformation::getType),
+		return builder.group(CodecHelper.registryObject(ForgeRegistries.ENTITIES).fieldOf("type").forGetter(EntityInformation::getType),
 				EntityPos.CODEC.forGetter(EntityInformation::getPos),
 				CompoundNBT.CODEC.optionalFieldOf("nbt", new CompoundNBT()).forGetter(EntityInformation::getNbt))
 				.apply(builder, EntityInformation::new);

@@ -40,14 +40,14 @@ import net.minecraft.util.*;
  * are handled through JSON only except logic.
  */
 public class PresentManager extends JsonReloadListener {
-
-	private static final PresentManager INSTANCE = new PresentManager();
+	
 	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
 	private static final Logger LOGGER = LogManager.getLogger();
-	private final BiMap<ResourceLocation, WrappedPresent<?, ?>> wrappedPresents = HashBiMap.create();
-	private final WeightedBoundSet<WrappedPresent<?, ?>> gifts = new WeightedBoundSet<>();
+	private static final PresentManager INSTANCE = new PresentManager();
 	private final Codec<WrappedPresent<?, ?>> wrappedPresentCodec = FallbackCodec.create(WrappedPresent.CODEC, ResourceLocation.CODEC.xmap(loc -> this.wrappedPresents.get(loc), wrap -> this.wrappedPresents.inverse().get(wrap)));
 	private final Codec<Map<WrappedPresent<?, ?>, WeightedElement>> giftsCodec = MapCodecHelper.makeEntryListCodec(this.wrappedPresentCodec, WeightedElement.CODEC);
+	private final BiMap<ResourceLocation, WrappedPresent<?, ?>> wrappedPresents = HashBiMap.create();
+	private final WeightedBoundSet<WrappedPresent<?, ?>> gifts = new WeightedBoundSet<>();
 	
 	public PresentManager() {
 		super(GSON, "presents");
@@ -56,7 +56,7 @@ public class PresentManager extends JsonReloadListener {
 	public static final PresentManager getInstance() {
 		return INSTANCE;
 	}
-
+	
 	@Override
 	protected void apply(Map<ResourceLocation, JsonElement> map, IResourceManager resourceManagerIn, IProfiler profilerIn) {
 		this.wrappedPresents.clear();
@@ -76,7 +76,7 @@ public class PresentManager extends JsonReloadListener {
 	
 	private void parseGifts(JsonObject obj) {
 		if(JSONUtils.getBoolean(obj, "replace", false)) this.gifts.getMap().clear();
-		this.gifts.getMap().putAll(this.giftsCodec.parse(JsonOps.INSTANCE, JSONUtils.getJsonObject(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+		this.gifts.getMap().putAll(this.giftsCodec.parse(JsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
 	}
 	
 	/**

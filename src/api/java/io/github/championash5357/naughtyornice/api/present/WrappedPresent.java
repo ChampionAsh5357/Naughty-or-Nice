@@ -19,7 +19,7 @@ package io.github.championash5357.naughtyornice.api.present;
 
 import com.mojang.serialization.Codec;
 
-import io.github.championash5357.ashlib.util.CodecHelper;
+import io.github.championash5357.ashlib.serialization.CodecHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
@@ -35,7 +35,7 @@ public class WrappedPresent<T, P extends Present<T>> {
 	/**
 	 * The associated wrapped present codec.
 	 */
-	public static final Codec<WrappedPresent<?, ?>> CODEC = CodecHelper.createRegistryObjectCodec(Present.REGISTRY.get())
+	public static final Codec<WrappedPresent<?, ?>> CODEC = CodecHelper.registryObject(Present.REGISTRY.get())
 			.dispatch(wrapped -> wrapped.present, Present::getCodec);
 	/**
 	 * The present instance.
