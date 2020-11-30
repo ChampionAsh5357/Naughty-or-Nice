@@ -61,7 +61,7 @@ public class StructurePresent extends Present<Wrapper> {
 					Codec.STRING.xmap(str -> Mirror.valueOf(str.toUpperCase()), mirror -> mirror.toString().toLowerCase()).optionalFieldOf("mirror", Mirror.NONE).forGetter(inst -> inst.mirror),
 					Codec.STRING.xmap(str -> Rotation.valueOf(str.toUpperCase()), rot -> rot.toString().toLowerCase()).optionalFieldOf("rotation", Rotation.NONE).forGetter(inst -> inst.rotation),
 					Codec.BOOL.optionalFieldOf("ignore_entities", false).forGetter(inst -> inst.ignoreEntities),
-					Codec.either(ResourceLocation.CODEC, IStructureProcessorType.field_242921_l.xmap(spl -> Helper.supplierFunction(spl), sup -> sup.get())).fieldOf("processors").forGetter(inst -> inst.processors))
+					Codec.either(ResourceLocation.CODEC, IStructureProcessorType.field_242921_l.xmap(spl -> Helper.supplierFunction(spl), sup -> sup.get())).optionalFieldOf("processors", Either.left(EMPTY)).forGetter(inst -> inst.processors))
 					.apply(builder, Wrapper::new);
 		});
 		private final ResourceLocation name;

@@ -67,8 +67,7 @@
 					"name": "minecraft:empty",
 					"player_position": {
 						"position": [ 0, 0, 0 ]
-					},
-					"processors": "minecraft:empty"
+					}
 				}
 			},
 			"v": 0.5

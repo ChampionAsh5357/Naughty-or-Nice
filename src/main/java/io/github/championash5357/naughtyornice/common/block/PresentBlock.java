@@ -65,6 +65,17 @@ public class PresentBlock extends Block implements IWaterLoggable {
 	}
 
 	@Override
+	public float getExplosionResistance(BlockState state, IBlockReader world, BlockPos pos, Explosion explosion) {
+		return state.get(OPEN) ? 3600000.0f : super.getExplosionResistance(state, world, pos, explosion);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public float getPlayerRelativeBlockHardness(BlockState state, PlayerEntity player, IBlockReader worldIn, BlockPos pos) {
+		return state.get(OPEN) ? -1.0f : super.getPlayerRelativeBlockHardness(state, player, worldIn, pos);
+	}
+	
+	@Override
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		Vector3d vector3d = state.getOffset(worldIn, pos);
 		return (state.get(OPEN) ? SHAPE_OPEN : SHAPE).withOffset(vector3d.x, vector3d.y, vector3d.z);
