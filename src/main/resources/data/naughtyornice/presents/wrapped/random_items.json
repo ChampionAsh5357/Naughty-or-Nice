@@ -1,0 +1,23 @@
+{
+	"type": "naughtyornice:multi_chance",
+	"config": [
+		{
+			"k": {
+				"type": "naughtyornice:loot_table",
+				"config": {
+					"name": "minecraft:empty",
+					"size": 5,
+					"loot_spawn_location": "random_ground"
+				}
+			},
+			"v": 1.0
+		},
+		{
+			"k": {
+				"type": "naughtyornice:command",
+				"config": "tellraw @s {\"translate\": \"naughtyornice.present.message.random_items\", \"color\": \"white\"}"
+			},
+			"v": 1.0
+		}
+	]
+}

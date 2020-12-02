@@ -18,6 +18,7 @@
 package io.github.championash5357.naughtyornice.api.present;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -78,7 +79,7 @@ public abstract class Present<T> extends ForgeRegistryEntry<Present<?>> {
 	 * @param player The associated player
 	 * @param config The present wrapper
 	 * @param presentPos The present position
-	 * @return If the present was unwrapped successfully; if not, an error will be thrown
+	 * @return A data result holding the present instance and if it was successful.
 	 */
-	public abstract boolean give(ServerPlayerEntity player, T config, BlockPos presentPos);
+	public abstract DataResult<Present<T>> give(ServerPlayerEntity player, T config, BlockPos presentPos);
 }

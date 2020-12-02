@@ -1,0 +1,7 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "naughtyornice:chests/gold_ingots",
+		"size": 7
+	}
+}

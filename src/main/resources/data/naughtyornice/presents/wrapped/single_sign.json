@@ -1,0 +1,8 @@
+{
+	"type": "naughtyornice:structure",
+	"config": {
+		"name": "naughtyornice:general/one_cube",
+		"ignore_entities": true,
+		"processors": "naughtyornice:sign_single"
+	}
+}

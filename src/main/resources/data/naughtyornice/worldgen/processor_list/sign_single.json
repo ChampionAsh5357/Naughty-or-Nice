@@ -1,8 +1,8 @@
 {
 	"processors": [
 		{
-			"processor_type": "naughtyornice:present",
-			"value": {}
+			"processor_type": "naughtyornice:sign",
+			"value": "minecraft:air"
 		},
 		{
 			"processor_type": "minecraft:rule",

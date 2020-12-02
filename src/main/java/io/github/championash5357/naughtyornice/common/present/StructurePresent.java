@@ -1,10 +1,27 @@
+/*
+ * Naughty or Nice
+ * Copyright (C) 2020 ChampionAsh5357
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as 
+ * published by the Free Software Foundation version 3.0 of the License.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package io.github.championash5357.naughtyornice.common.present;
 
 import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.mojang.datafixers.util.Either;
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import io.github.championash5357.naughtyornice.api.present.Present;
@@ -30,7 +47,7 @@ public class StructurePresent extends Present<Wrapper> {
 	}
 
 	@Override
-	public boolean give(ServerPlayerEntity player, Wrapper config, BlockPos presentPos) {
+	public DataResult<Present<Wrapper>> give(ServerPlayerEntity player, Wrapper config, BlockPos presentPos) {
 		ServerWorld world = player.getServerWorld();
 		BlockPos pos = config.offset.isPresent() ? presentPos.add(config.offset.get()) : presentPos;
 		if(!config.name.equals(EMPTY)) {
@@ -38,9 +55,9 @@ public class StructurePresent extends Present<Wrapper> {
 			try {
 				template = world.getStructureTemplateManager().getTemplate(config.name);
 			} catch (ResourceLocationException resourcelocationexception) {
-				return false;
+				return DataResult.error("Tried to load improperly formatted template: " + config.name, this, Lifecycle.stable());
 			}
-			if(template == null) return false;
+			if(template == null) return DataResult.error("A template does not exist for this name: " + config.name, this, Lifecycle.stable());
 			BlockState state = world.getBlockState(pos);
 			world.notifyBlockUpdate(pos, state, state, BlockFlags.DEFAULT);
 			PlacementSettings settings = (new PlacementSettings()).setMirror(config.mirror).setRotation(config.rotation).setIgnoreEntities(config.ignoreEntities).setChunk((ChunkPos) null);
@@ -49,7 +66,7 @@ public class StructurePresent extends Present<Wrapper> {
 			template.func_237144_a_(world, pos, settings, Helper.RANDOM);
 		}
 		config.playerPos.ifPresent(e -> e.applyPositionAndRotation(player, pos));
-		return true;
+		return DataResult.success(this, Lifecycle.stable());
 	}
 
 	public static class Wrapper {

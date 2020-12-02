@@ -25,10 +25,10 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.collect.Lists;
 import com.google.gson.*;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.JsonOps;
 
 import commoble.databuddy.codec.MapCodecHelper;
 import io.github.championash5357.ashlib.serialization.CodecHelper;
+import io.github.championash5357.naughtyornice.api.util.DefinedJsonOps;
 import io.github.championash5357.naughtyornice.api.util.FallbackCodec;
 import io.github.championash5357.naughtyornice.common.util.StackInformation;
 import net.minecraft.client.resources.JsonReloadListener;
@@ -76,20 +76,20 @@ public class NicenessManager extends JsonReloadListener {
 	
 	private void parseEntityNicenessEffects(JsonObject obj) {
 		if(JSONUtils.getBoolean(obj, "replace", false)) this.entityNicenessEffects.clear();
-		this.entityNicenessEffects.putAll(ENTITY_NICENESS_EFFECTS_CODEC.parse(JsonOps.INSTANCE, JSONUtils.getJsonObject(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading entity niceness effects after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+		this.entityNicenessEffects.putAll(ENTITY_NICENESS_EFFECTS_CODEC.parse(DefinedJsonOps.INSTANCE, JSONUtils.getJsonObject(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading entity niceness effects after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
 	}
 	
 	private void parseGlobalEffects(JsonObject obj) {
-		this.globalEffects.putAll(GLOBAL_EFFECTS_CODEC.parse(JsonOps.INSTANCE, obj).resultOrPartial(Util.func_240982_a_("Error reading global effects after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+		this.globalEffects.putAll(GLOBAL_EFFECTS_CODEC.parse(DefinedJsonOps.INSTANCE, obj).resultOrPartial(Util.func_240982_a_("Error reading global effects after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
 	}
 	
 	private void parseStackInformation(ResourceLocation id, JsonObject obj) {
-		StackInformation.CODEC.parse(JsonOps.INSTANCE, obj).resultOrPartial(Util.func_240982_a_("Error reading stack information after loading data packs: ", LOGGER::error)).ifPresent(info -> this.stackInformation.put(new ResourceLocation(id.toString().replace("stack_information/", "")), info));
+		StackInformation.CODEC.parse(DefinedJsonOps.INSTANCE, obj).resultOrPartial(Util.func_240982_a_("Error reading stack information after loading data packs: ", LOGGER::error)).ifPresent(info -> this.stackInformation.put(new ResourceLocation(id.toString().replace("stack_information/", "")), info));
 	}
 	
 	private void parseVillagerGifts(JsonObject obj) {
 		if(JSONUtils.getBoolean(obj, "replace", false)) this.villagerGifts.clear();
-		this.villagerGifts.putAll(this.villagerGiftsCodec.parse(JsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+		this.villagerGifts.putAll(this.villagerGiftsCodec.parse(DefinedJsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
 	}
 	
 	public double getEntityHurt(EntityType<?> type, String... globalEffects) {

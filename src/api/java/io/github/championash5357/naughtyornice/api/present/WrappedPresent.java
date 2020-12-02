@@ -18,6 +18,7 @@
 package io.github.championash5357.naughtyornice.api.present;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 
 import io.github.championash5357.ashlib.serialization.CodecHelper;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -83,7 +84,11 @@ public class WrappedPresent<T, P extends Present<T>> {
 	 * @param presentPos The present position
 	 * @return If the present was unwrapped successfully; if not, an error will be thrown
 	 */
-	public boolean give(ServerPlayerEntity player, BlockPos presentPos) {
-		return this.present.give(player, this.config, presentPos);
+	public DataResult<Present<T>> give(ServerPlayerEntity player, BlockPos presentPos) {
+		try {
+			return this.present.give(player, this.config, presentPos);
+		} catch (Exception e) {
+			return DataResult.error(e.getMessage());
+		}
 	}
 }

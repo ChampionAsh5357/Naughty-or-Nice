@@ -41,13 +41,16 @@ import net.minecraft.util.*;
  */
 public class PresentManager extends JsonReloadListener {
 	
+	private static final Random RANDOM = new Random();
 	private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final PresentManager INSTANCE = new PresentManager();
+	private static final Codec<Map<SignInformation, Integer>> SIGN_INFORMATION_CODEC = MapCodecHelper.makeEntryListCodec(SignInformation.CODEC, Codec.INT);
 	private final Codec<WrappedPresent<?, ?>> wrappedPresentCodec = FallbackCodec.create(WrappedPresent.CODEC, ResourceLocation.CODEC.xmap(loc -> this.wrappedPresents.get(loc), wrap -> this.wrappedPresents.inverse().get(wrap)));
-	private final Codec<Map<WrappedPresent<?, ?>, WeightedElement>> giftsCodec = MapCodecHelper.makeEntryListCodec(this.wrappedPresentCodec, WeightedElement.CODEC);
+	private final Codec<Map<WrappedPresent<?, ?>, WeightedBoundElement>> giftsCodec = MapCodecHelper.makeEntryListCodec(this.wrappedPresentCodec, WeightedBoundElement.CODEC);
 	private final BiMap<ResourceLocation, WrappedPresent<?, ?>> wrappedPresents = HashBiMap.create();
 	private final WeightedBoundSet<WrappedPresent<?, ?>> gifts = new WeightedBoundSet<>();
+	private final List<SignInformation> signs = new ArrayList<>();
 	
 	public PresentManager() {
 		super(GSON, "presents");
@@ -61,10 +64,12 @@ public class PresentManager extends JsonReloadListener {
 	protected void apply(Map<ResourceLocation, JsonElement> map, IResourceManager resourceManagerIn, IProfiler profilerIn) {
 		this.wrappedPresents.clear();
 		this.gifts.getMap().clear();
+		this.signs.clear();
 		List<JsonElement> gifts = new ArrayList<>();
 		map.forEach((id, element) -> {
 			if(id.getPath().startsWith("wrapped/")) this.parseWrappedPresent(id, JSONUtils.getJsonObject(element, "wrapped_present"));
 			else if(id.getPath().equals("gifts")) gifts.add(element);
+			else if(id.getPath().equals("signs")) this.parseSigns(JSONUtils.getJsonObject(element, "signs"));
 			else throw new JsonIOException("The following json file is incorrectly named or placed: " + id);
 		});
 		gifts.forEach(element -> this.parseGifts(JSONUtils.getJsonObject(element, "gifts")));
@@ -77,6 +82,13 @@ public class PresentManager extends JsonReloadListener {
 	private void parseGifts(JsonObject obj) {
 		if(JSONUtils.getBoolean(obj, "replace", false)) this.gifts.getMap().clear();
 		this.gifts.getMap().putAll(this.giftsCodec.parse(JsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+	}
+	
+	private void parseSigns(JsonObject obj) {
+		if(JSONUtils.getBoolean(obj, "replace", false)) this.signs.clear();
+		SIGN_INFORMATION_CODEC.parse(JsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading sign information after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()).forEach((info, weight) -> {
+			for(int i = 0; i < weight; i++) this.signs.add(info);
+		});
 	}
 	
 	/**
@@ -117,5 +129,14 @@ public class PresentManager extends JsonReloadListener {
 	 */
 	public ResourceLocation reversePresent(WrappedPresent<?, ?> present) {
 		return this.wrappedPresents.inverse().get(present);
+	}
+	
+	/**
+	 * Grabs a random sign info to be displayed.
+	 * 
+	 * @return An {@code Optional} containing the sign information if present
+	 */
+	public Optional<SignInformation> getSignInformation() {
+		return this.signs.size() > 0 ? Optional.of(this.signs.get(RANDOM.nextInt(this.signs.size()))) : Optional.empty();
 	}
 }

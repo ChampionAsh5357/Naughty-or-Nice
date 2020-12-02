@@ -1,0 +1,24 @@
+{
+	"type": "naughtyornice:multi_chance",
+	"config": [
+		{
+			"k": {
+				"type": "naughtyornice:structure",
+				"config": {
+					"name": "naughtyornice:general/three_cube",
+					"ignore_entities": true,
+					"offset": [ -1, 0, -1 ],
+					"processors": "naughtyornice:randomized_air"
+				}
+			},
+			"v": 1.0
+		},
+		{
+			"k": {
+				"type": "naughtyornice:command",
+				"config": "tellraw @s {\"translate\": \"naughtyornice.present.message.random_blocks\", \"color\": \"white\"}"
+			},
+			"v": 1.0
+		}
+	]
+}

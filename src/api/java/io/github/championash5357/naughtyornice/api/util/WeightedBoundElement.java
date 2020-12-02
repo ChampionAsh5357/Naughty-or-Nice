@@ -27,16 +27,16 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
  * weight of an item and the associated bounds where the
  * weight is applicable.
  */
-public class WeightedElement implements Predicate<Double> {
+public class WeightedBoundElement implements Predicate<Double> {
 
 	/**
 	 * The class codec.
 	 */
-	public static final Codec<WeightedElement> CODEC = RecordCodecBuilder.create(builder -> {
-		return builder.group(Codec.INT.fieldOf("weight").forGetter(WeightedElement::getWeight),
+	public static final Codec<WeightedBoundElement> CODEC = RecordCodecBuilder.create(builder -> {
+		return builder.group(Codec.INT.fieldOf("weight").forGetter(WeightedBoundElement::getWeight),
 				Codec.DOUBLE.optionalFieldOf("min", Double.NEGATIVE_INFINITY).forGetter(element -> element.min),
 				Codec.DOUBLE.optionalFieldOf("max", Double.POSITIVE_INFINITY).forGetter(element -> element.max))
-				.apply(builder, WeightedElement::new);
+				.apply(builder, WeightedBoundElement::new);
 	});
 	/**
 	 * The weight value.
@@ -54,7 +54,7 @@ public class WeightedElement implements Predicate<Double> {
 	 * @param min The minimum bound
 	 * @param max The maximum bound
 	 */
-	public WeightedElement(final int weight, final double min, final double max) {
+	public WeightedBoundElement(final int weight, final double min, final double max) {
 		this.weight = weight;
 		this.min = min;
 		this.max = max;

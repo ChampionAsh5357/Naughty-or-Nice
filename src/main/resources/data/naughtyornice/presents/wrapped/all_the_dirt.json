@@ -1,0 +1,8 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "naughtyornice:chests/all_the_dirt",
+		"size": 36,
+		"loot_spawn_location": "inventory"
+	}
+}

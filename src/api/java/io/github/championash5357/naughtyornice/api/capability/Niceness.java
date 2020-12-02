@@ -21,6 +21,9 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.github.championash5357.naughtyornice.api.present.PresentManager;
 import io.github.championash5357.naughtyornice.api.present.WrappedPresent;
 import io.github.championash5357.naughtyornice.common.block.PresentBlock;
@@ -41,6 +44,7 @@ import net.minecraft.util.text.*;
  */
 public class Niceness implements INiceness {
 	
+	private static final Logger LOGGER = LogManager.getLogger();
 	@Nullable
 	private final PlayerEntity player;
 	private double minNiceness, maxNiceness, centralNiceness; //Should be effectively final
@@ -106,7 +110,7 @@ public class Niceness implements INiceness {
 		this.present = null;
 		if(this.present != null || this.presentPos != null) return false;
 		//if(te.getNiceness() > 0 && this.getNiceness() - te.getNiceness() <= 0) return false;
-		Optional<WrappedPresent<?, ?>> opt = PresentManager.getInstance().getWrappedPresent(this.getNiceness());
+		Optional<WrappedPresent<?, ?>> opt = PresentManager.getInstance().getWrappedPresent(te.getNiceness());
 		if(!opt.isPresent()) return false;
 		//if(te.getNiceness() > 0) this.changeNiceness(this.getLuckModifier() - te.getNiceness());
 		this.present = opt.get();
@@ -120,9 +124,8 @@ public class Niceness implements INiceness {
 	@Override
 	public void unwrap() {
 		if(player == null || player.world.isRemote) return;
-		if(!this.present.give((ServerPlayerEntity) this.player, this.presentPos)) {
-			throw new IllegalStateException("The specified present could not be opened: " + PresentManager.getInstance().reversePresent(this.present).toString());
-		}
+		this.present.give((ServerPlayerEntity) this.player, this.presentPos)
+		.promotePartial(Util.func_240982_a_("The specified present could not be fully opened: " + PresentManager.getInstance().reversePresent(this.present).toString() + "\n", LOGGER::error));
 		this.present = null;
 		this.presentPos = null;
 	}

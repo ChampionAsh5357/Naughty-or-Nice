@@ -1,10 +1,6 @@
 {
 	"processors": [
 		{
-			"processor_type": "naughtyornice:present",
-			"value": {}
-		},
-		{
 			"processor_type": "minecraft:rule",
 			"rules": [
 				{

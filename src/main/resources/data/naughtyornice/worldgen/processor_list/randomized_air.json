@@ -1,8 +1,9 @@
 {
 	"processors": [
 		{
-			"processor_type": "naughtyornice:present",
-			"value": {}
+			"processor_type": "naughtyornice:random",
+			"block": "minecraft:air",
+			"chance": 0.5
 		},
 		{
 			"processor_type": "minecraft:rule",

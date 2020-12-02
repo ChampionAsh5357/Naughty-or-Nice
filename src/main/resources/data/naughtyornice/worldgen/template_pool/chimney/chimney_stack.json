@@ -6,7 +6,7 @@
       "weight": 2,
       "element": {
         "location": "naughtyornice:chimney/chimney_stack",
-        "processors": "minecraft:empty",
+        "processors": "naughtyornice:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

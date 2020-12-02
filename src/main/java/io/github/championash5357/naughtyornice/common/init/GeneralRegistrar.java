@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 import com.mojang.serialization.Codec;
 
 import commoble.databuddy.codec.MapCodecHelper;
-import io.github.championash5357.ashlib.registry.DeferredRegistryHelper;
+import io.github.championash5357.ashlib.registry.*;
 import io.github.championash5357.naughtyornice.api.present.Present;
 import io.github.championash5357.naughtyornice.api.present.PresentManager;
 import io.github.championash5357.naughtyornice.common.NaughtyOrNice;
@@ -33,7 +33,7 @@ import io.github.championash5357.naughtyornice.common.block.PresentBlock;
 import io.github.championash5357.naughtyornice.common.present.*;
 import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
 import io.github.championash5357.naughtyornice.common.util.EntityInformation;
-import io.github.championash5357.naughtyornice.common.world.gen.feature.template.PresentProcessor;
+import io.github.championash5357.naughtyornice.common.world.gen.feature.template.*;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -42,6 +42,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.feature.template.IPosRuleTests;
 import net.minecraft.world.gen.feature.template.IStructureProcessorType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -55,12 +57,17 @@ public class GeneralRegistrar {
 	public static final DeferredRegistryHelper<SoundEvent> SOUND_EVENTS = NaughtyOrNice.getInstance().getRegistryHelper().createRegistry(ForgeRegistries.SOUND_EVENTS);	
 	@SuppressWarnings("unchecked")
 	public static final DeferredRegistryHelper<Present<?>> PRESENTS = NaughtyOrNice.getInstance().getRegistryHelper().createRegistry("present", Present.class, () -> new RegistryBuilder<>());
+	public static final VanillaRegistryHelper<IStructureProcessorType<?>> STRUCTURE_PROCESSORS = NaughtyOrNice.getInstance().getRegistryHelper().createRegistry(Registry.STRUCTURE_PROCESSOR, false);
+	public static final VanillaRegistryHelper<IPosRuleTests<?>> POS_RULE_TESTS = NaughtyOrNice.getInstance().getRegistryHelper().createRegistry(Registry.POS_RULE_TEST, false);
 	
 	public static final RegistryObject<PresentBlock> PRESENT = register("present", () -> new PresentBlock(AbstractBlock.Properties.create(Material.WOOL)), (sup) -> () -> new BlockItem(sup.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	public static final RegistryObject<TileEntityType<PresentTileEntity>> PRESENT_TYPE = TILE_ENTITY_TYPES.register("present", () -> TileEntityType.Builder.create(PresentTileEntity::new, PRESENT.get()).build(null));
 	public static final RegistryObject<SoundEvent> BLOCK_PRESENT_OPEN = register("block.present.open");
 
-	public static final IStructureProcessorType<PresentProcessor> PROCESSOR = IStructureProcessorType.register(NaughtyOrNice.ID + ":present", PresentProcessor.CODEC);
+	public static final VanillaRegistryObject<IStructureProcessorType<PresentProcessor>> PRESENT_PROCESSOR = STRUCTURE_PROCESSORS.register("present", () -> () -> PresentProcessor.CODEC);
+	public static final VanillaRegistryObject<IStructureProcessorType<SignProcessor>> SIGN_PROCESSOR = STRUCTURE_PROCESSORS.register("sign", () -> () -> SignProcessor.CODEC);
+	public static final VanillaRegistryObject<IStructureProcessorType<RandomProcessor>> RANDOM_PROCESSOR = STRUCTURE_PROCESSORS.register("random", () -> () -> RandomProcessor.CODEC);
+	public static final VanillaRegistryObject<IPosRuleTests<AtYZeroTest>> AT_Y_ZERO_POS_TEST = POS_RULE_TESTS.register("at_y_zero", () -> () -> AtYZeroTest.CODEC);
 	
 	public static final RegistryObject<MultiChancePresent> MULTI_CHANCE = PRESENTS.register("multi_chance", () -> new MultiChancePresent(MapCodecHelper.makeEntryListCodec(PresentManager.getInstance().getWrappedPresentCodec(), Codec.doubleRange(0.0, 1.0).orElse(1.0))));
 	public static final RegistryObject<LootTablePresent> LOOT_TABLE = PRESENTS.register("loot_table", () -> new LootTablePresent(LootTablePresent.Wrapper.CODEC));

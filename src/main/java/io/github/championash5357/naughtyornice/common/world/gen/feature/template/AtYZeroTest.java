@@ -15,24 +15,31 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.championash5357.naughtyornice.common.present;
+package io.github.championash5357.naughtyornice.common.world.gen.feature.template;
 
-import com.mojang.serialization.*;
+import java.util.Random;
 
-import io.github.championash5357.naughtyornice.api.present.Present;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import com.mojang.serialization.Codec;
+
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.feature.template.IPosRuleTests;
+import net.minecraft.world.gen.feature.template.PosRuleTest;
 
-public class PlayerNbtPresent extends Present<CompoundNBT> {
+public class AtYZeroTest extends PosRuleTest {
 
-	public PlayerNbtPresent(Codec<CompoundNBT> codec) {
-		super(codec);
+	public static final AtYZeroTest INSTANCE = new AtYZeroTest();
+	public static final Codec<AtYZeroTest> CODEC = Codec.unit(() -> INSTANCE);
+	
+	private AtYZeroTest() {}
+
+	@Override
+	public boolean func_230385_a_(BlockPos rawPos, BlockPos actualPos, BlockPos seedPos, Random random) {
+		return actualPos.getY() == 0;
 	}
 
 	@Override
-	public DataResult<Present<CompoundNBT>> give(ServerPlayerEntity player, CompoundNBT config, BlockPos presentPos) {
-		player.deserializeNBT(player.serializeNBT().merge(config));
-		return DataResult.success(this, Lifecycle.stable());
+	protected IPosRuleTests<?> func_230384_a_() {
+		return null;
 	}
+
 }

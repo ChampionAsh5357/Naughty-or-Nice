@@ -98,6 +98,20 @@ public class NaughtyOrNice {
 		.add(LocalizationStrings.NICENESS_CHECK_ERROR, "You cannot check the niceness of a player for another %1$s ticks.")
 		.add(LocalizationStrings.PRESENT_MESSAGE_SINGLE_TNT, "Surprise!")
 		.add(LocalizationStrings.PRESENT_MESSAGE_CREEPER_PARTY, "Creeper Party!")
+		.add(LocalizationStrings.PRESENT_MESSAGE_RANDOM_ITEMS, "Randomness Part 1: Itecalypse")
+		.add(LocalizationStrings.PRESENT_MESSAGE_RANDOM_BLOCKS, "Randomness Part 2: Blocatastrophe")
+		.add(LocalizationStrings.PRESENT_KRAMPUS, "Krampus")
+		.add(LocalizationStrings.PRESENT_KRAMPUS_BOOTS, "Krampus's Boots")
+		.add(LocalizationStrings.PRESENT_KRAMPUS_PANTS, "Krampus's Pants")
+		.add(LocalizationStrings.PRESENT_KRAMPUS_COAT, "Krampus's Coat")
+		.add(LocalizationStrings.PRESENT_KRAMPUS_BAG, "Krampus's Bag")
+		.add(LocalizationStrings.PRESENT_ELVIL, "Elvil")
+		.add(LocalizationStrings.PRESENT_ELVIL_MASON_PICKAXE, "Elvil's Mason Pick")
+		.add(LocalizationStrings.PRESENT_ELVIL_TOOLSMITH_SHOVEL, "Elvil's Smithed Shovel")
+		.add(LocalizationStrings.PRESENT_ELVIL_WEAPONSMITH_AXE, "Elvil's Smithed Axe")
+		.add(LocalizationStrings.PRESENT_ELVIL_ARMORER_BOOTS, "Elvil's Armored Boots")
+		.add(LocalizationStrings.PRESENT_ELVIL_ARMORER_LEGGINGS, "Elvil's Armored Leggings")
+		.add(LocalizationStrings.PRESENT_ELVIL_ARMORER_CHESTPLATE, "Elvil's Armored Chestplate")
 		.end();
 
 		mod.addListener(this::common);
