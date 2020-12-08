@@ -40,7 +40,7 @@ public abstract class CatEntityMixin extends TameableEntity {
 	}
 
 	@Inject(method = "func_230254_b_(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResultType;",
-			at = @At(value = "INVOKE", target = "heal(F)V"),
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/CatEntity;heal(F)V", remap = true),
 			remap = false)
 	private void getNiceness(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResultType> ci) {
 		MinecraftForge.EVENT_BUS.post(new PlayerHealLivingEvent(player, this));

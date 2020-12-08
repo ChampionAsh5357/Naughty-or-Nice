@@ -44,8 +44,10 @@ compileJava {
 }
 
 sourceSets {
-    api
+    api {}
     main.resources.srcDirs += 'src/generated/resources'
+    main.java.srcDirs += api.java.srcDirs
+    main.resources.srcDirs += api.resources.srcDirs
 }
 
 configurations {
@@ -86,19 +88,17 @@ minecraft {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc}-${forge}"
-    implementation fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
+    compile fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
     shade fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
-    implementation fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
+    compile fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
     shade fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
     
     implementation sourceSets.api.output
 }
 
 jar {
-    from sourceSets.main.output.classesDirs
-    from sourceSets.main.output.resourcesDir
-    from sourceSets.api.output.classesDirs
-    from sourceSets.api.output.resourcesDir
+    from sourceSets.main.output
+    from sourceSets.api.output
 
     manifest {
         attributes([
@@ -127,6 +127,12 @@ reobf {
 
 tasks.build.dependsOn reobfShadowJar
 jar.finalizedBy('reobfShadowJar') 
+
+javadoc {
+	options.tags = [
+		"reason:a:Reason:"
+	]
+}
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = "javadoc"

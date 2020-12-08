@@ -26,12 +26,12 @@ import com.mojang.serialization.Codec;
 
 import commoble.databuddy.codec.MapCodecHelper;
 import io.github.championash5357.ashlib.registry.*;
+import io.github.championash5357.naughtyornice.api.block.PresentBlock;
 import io.github.championash5357.naughtyornice.api.present.Present;
 import io.github.championash5357.naughtyornice.api.present.PresentManager;
+import io.github.championash5357.naughtyornice.api.tileentity.PresentTileEntity;
 import io.github.championash5357.naughtyornice.common.NaughtyOrNice;
-import io.github.championash5357.naughtyornice.common.block.PresentBlock;
 import io.github.championash5357.naughtyornice.common.present.*;
-import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
 import io.github.championash5357.naughtyornice.common.util.EntityInformation;
 import io.github.championash5357.naughtyornice.common.world.gen.feature.template.*;
 import net.minecraft.block.AbstractBlock;

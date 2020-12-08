@@ -17,7 +17,7 @@
 
 package io.github.championash5357.naughtyornice.api.capability;
 
-import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
+import io.github.championash5357.naughtyornice.api.tileentity.PresentTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -54,7 +54,7 @@ public interface INiceness extends INBTSerializable<CompoundNBT>{
 	 * Adds the current niceness level. Is scaled
 	 * between the minimum and maximum niceness.
 	 * 
-	 * @param niceness The amount to change niceness level
+	 * @param amount The amount to change niceness level
 	 */
 	default void changeNiceness(double amount) { this.changeNiceness(amount, false); }
 	
@@ -71,7 +71,7 @@ public interface INiceness extends INBTSerializable<CompoundNBT>{
 	 * Adds the current niceness level. Is scaled
 	 * between the minimum and maximum niceness.
 	 * 
-	 * @param niceness The amount to change niceness level
+	 * @param amount The amount to change niceness level
 	 * @param overrideChecks If any checks should be overridden. This includes if the player is alive or in a different gamemode.
 	 */
 	void changeNiceness(double amount, boolean overrideChecks);

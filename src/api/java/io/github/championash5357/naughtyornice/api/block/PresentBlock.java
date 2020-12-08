@@ -15,12 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.championash5357.naughtyornice.common.block;
+package io.github.championash5357.naughtyornice.api.block;
 
 import io.github.championash5357.naughtyornice.api.capability.CapabilityInstances;
 import io.github.championash5357.naughtyornice.api.capability.INiceness;
-import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
-import io.github.championash5357.naughtyornice.common.util.Helper;
+import io.github.championash5357.naughtyornice.api.tileentity.PresentTileEntity;
+import io.github.championash5357.naughtyornice.api.util.Helper;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,6 +39,9 @@ import net.minecraft.util.math.shapes.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.*;
 
+/**
+ * Creates a basic block instance.
+ */
 public class PresentBlock extends Block implements IWaterLoggable {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

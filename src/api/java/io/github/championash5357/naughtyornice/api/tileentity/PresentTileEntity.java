@@ -15,12 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.championash5357.naughtyornice.common.tileentity;
+package io.github.championash5357.naughtyornice.api.tileentity;
 
+import io.github.championash5357.naughtyornice.api.block.PresentBlock;
 import io.github.championash5357.naughtyornice.api.capability.CapabilityInstances;
 import io.github.championash5357.naughtyornice.api.capability.INiceness;
-import io.github.championash5357.naughtyornice.common.block.PresentBlock;
-import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
+import io.github.championash5357.naughtyornice.api.util.LocalizationStrings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -29,9 +29,14 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.util.Constants.BlockFlags;
+import net.minecraftforge.registries.ForgeRegistries;
 
+/**
+ * Creates a basic tile entity instance.
+ */
 public class PresentTileEntity extends TileEntity implements ITickableTileEntity {
 
 	private int niceness;
@@ -41,8 +46,9 @@ public class PresentTileEntity extends TileEntity implements ITickableTileEntity
 	private double rotation, height;
 	private double prevRotation, prevHeight;
 
+	@SuppressWarnings("unchecked")
 	public PresentTileEntity() {
-		this(GeneralRegistrar.PRESENT_TYPE.get());
+		this((TileEntityType<? extends PresentTileEntity>) ForgeRegistries.TILE_ENTITIES.getValue(new ResourceLocation(LocalizationStrings.ID, "present")));
 	}
 
 	public PresentTileEntity(TileEntityType<? extends PresentTileEntity> ter) {

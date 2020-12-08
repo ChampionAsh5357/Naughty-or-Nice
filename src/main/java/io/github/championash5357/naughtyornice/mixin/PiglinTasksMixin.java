@@ -49,6 +49,16 @@ public class PiglinTasksMixin {
 	@Shadow(remap = false) private static void func_234498_c_(PiglinEntity piglin, ItemStack stack) { throw new RuntimeException("Can't believe this happened..."); }
 	@Shadow(remap = false) protected static boolean func_234480_a_(Item item) { throw new RuntimeException("Can't believe this happened..."); }
 	
+	/**
+	 * Remapped to allow the trading entity to be passed into the piglin.
+	 * Allows niceness to occur from piglin trading.
+	 * 
+	 * @param piglin The piglin being traded with
+	 * @param tradingEntity The trader
+	 * 
+	 * @author ChampionAsh5357
+	 * @reason Get piglin trading entity
+	 */
 	@Overwrite(remap = false)
 	protected static void func_234468_a_(PiglinEntity piglin, LivingEntity tradingEntity) {
 		if (!(tradingEntity instanceof PiglinEntity)) {

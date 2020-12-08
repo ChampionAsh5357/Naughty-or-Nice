@@ -24,8 +24,8 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import io.github.championash5357.ashlib.serialization.CodecHelper;
+import io.github.championash5357.naughtyornice.api.util.Helper;
 import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
-import io.github.championash5357.naughtyornice.common.util.Helper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;

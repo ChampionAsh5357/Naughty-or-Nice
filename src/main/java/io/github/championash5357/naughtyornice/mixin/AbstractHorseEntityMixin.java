@@ -39,7 +39,7 @@ public abstract class AbstractHorseEntityMixin extends AnimalEntity {
 	}
 
 	@Inject(method = "handleEating(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/ItemStack;)Z",
-			at = @At(value = "INVOKE", target = "heal(F)V"))
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/horse/AbstractHorseEntity;heal(F)V"))
 	private void getNiceness(PlayerEntity player, ItemStack stack, CallbackInfoReturnable<Boolean> ci) {
 		MinecraftForge.EVENT_BUS.post(new PlayerHealLivingEvent(player, this));
 	}

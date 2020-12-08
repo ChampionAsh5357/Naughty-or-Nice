@@ -15,15 +15,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.championash5357.naughtyornice.common.util;
+package io.github.championash5357.naughtyornice.api.util;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
+/**
+ * A utility class that simply holds some helper references.
+ */
 public class Helper {
 
+	/**
+	 * A random instance.
+	 */
 	public static final Random RANDOM = new Random();
 	
+	/**
+	 * Creates a supplier function for lambda usage.
+	 * 
+	 * @param <T> The object type
+	 * @param t The object instance
+	 * @return A supplier of the object instance
+	 */
 	public static <T> Supplier<T> supplierFunction(T t) {
 		return () -> t;
 	}

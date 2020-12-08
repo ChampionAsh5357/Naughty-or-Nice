@@ -19,11 +19,11 @@ package io.github.championash5357.naughtyornice.client;
 
 import javax.annotation.Nullable;
 
+import io.github.championash5357.naughtyornice.api.tileentity.PresentTileEntity;
 import io.github.championash5357.naughtyornice.client.renderer.tileentity.PresentTileEntityRenderer;
 import io.github.championash5357.naughtyornice.common.ISidedReference;
 import io.github.championash5357.naughtyornice.common.NaughtyOrNice;
 import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
-import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

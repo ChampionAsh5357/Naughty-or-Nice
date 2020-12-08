@@ -19,9 +19,9 @@ package io.github.championash5357.naughtyornice.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import io.github.championash5357.naughtyornice.api.block.PresentBlock;
+import io.github.championash5357.naughtyornice.api.tileentity.PresentTileEntity;
 import io.github.championash5357.naughtyornice.client.ClientReference;
-import io.github.championash5357.naughtyornice.common.block.PresentBlock;
-import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

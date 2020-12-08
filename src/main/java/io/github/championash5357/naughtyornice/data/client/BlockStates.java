@@ -17,7 +17,7 @@
 
 package io.github.championash5357.naughtyornice.data.client;
 
-import io.github.championash5357.naughtyornice.common.block.PresentBlock;
+import io.github.championash5357.naughtyornice.api.block.PresentBlock;
 import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;

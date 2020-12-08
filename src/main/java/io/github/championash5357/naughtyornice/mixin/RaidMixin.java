@@ -48,6 +48,15 @@ public class RaidMixin {
 		}
 	}
 	
+	/**
+	 * Expands hero method to add entities who particpate in the
+	 * raid to the capability handler.
+	 * 
+	 * @param entity The player helping
+	 * 
+	 * @author ChampionAsh5357
+	 * @reason Get participating players
+	 */
 	@Overwrite
 	public void addHero(Entity entity) {
 		if(this.heroes.add(entity.getUniqueID())) {

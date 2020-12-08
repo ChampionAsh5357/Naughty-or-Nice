@@ -25,9 +25,9 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import io.github.championash5357.naughtyornice.api.present.Present;
+import io.github.championash5357.naughtyornice.api.util.Helper;
 import io.github.championash5357.naughtyornice.common.present.StructurePresent.Wrapper;
 import io.github.championash5357.naughtyornice.common.util.EntityPos;
-import io.github.championash5357.naughtyornice.common.util.Helper;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.*;

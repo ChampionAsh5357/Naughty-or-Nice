@@ -24,12 +24,11 @@ import javax.annotation.Nullable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.github.championash5357.naughtyornice.api.block.PresentBlock;
 import io.github.championash5357.naughtyornice.api.present.PresentManager;
 import io.github.championash5357.naughtyornice.api.present.WrappedPresent;
-import io.github.championash5357.naughtyornice.common.block.PresentBlock;
-import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
-import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
-import io.github.championash5357.naughtyornice.common.util.LocalizationStrings;
+import io.github.championash5357.naughtyornice.api.tileentity.PresentTileEntity;
+import io.github.championash5357.naughtyornice.api.util.LocalizationStrings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -39,6 +38,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * A basic implementation of {@link INiceness}.
@@ -126,7 +126,7 @@ public class Niceness implements INiceness {
 		this.presentPos = te.getPos();
 		te.setEntity(this.player);
 		world.setBlockState(this.presentPos, te.getBlockState().with(PresentBlock.OPEN, true));
-		world.playSound((PlayerEntity) null, this.presentPos, GeneralRegistrar.BLOCK_PRESENT_OPEN.get(), SoundCategory.BLOCKS, 1.0f, 1.0f);
+		world.playSound((PlayerEntity) null, this.presentPos, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(LocalizationStrings.ID, "block.present.open")), SoundCategory.BLOCKS, 1.0f, 1.0f);
 		return true;
 	}
 	
