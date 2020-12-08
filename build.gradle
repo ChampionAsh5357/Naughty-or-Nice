@@ -22,14 +22,14 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
 repositories {
-	maven {
-		name "ChampionAsh5357's Maven"
-		url 'https://championash5357.github.io/ChampionAsh5357/projects/maven'
-	}
-	maven {
-		name "Databuddy Maven"
-		url "https://cubicinterpolation.net/maven/"
-	}
+    maven {
+        name "ChampionAsh5357's Maven"
+        url 'https://championash5357.github.io/ChampionAsh5357/projects/maven'
+    }
+    maven {
+        name "Databuddy Maven"
+        url "https://cubicinterpolation.net/maven/"
+    }
 }
 
 String semver = "${major}.${api}.${minor}"
@@ -40,22 +40,22 @@ archivesBaseName = "${modId}"
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 compileJava {
-	sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 sourceSets {
-	api
+    api
     main.resources.srcDirs += 'src/generated/resources'
 }
 
 configurations {
-	apiCompile.extendsFrom(compile)
-	shade
+    apiCompile.extendsFrom(compile)
+    shade
 }
 
 minecraft {
     mappings channel: project.channelType, version: project.mappingVersion
-	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -63,7 +63,7 @@ minecraft {
             arg '-mixin.config=' + modId + '.mixins.json'
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-			mods.create("${modId}").sources(sourceSets.main, sourceSets.api)
+            mods.create("${modId}").sources(sourceSets.main, sourceSets.api)
         }
 
         server {
@@ -79,7 +79,7 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             args '--mod', modId, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
-			mods.create("${modId}").sources(sourceSets.main, sourceSets.api)
+            mods.create("${modId}").sources(sourceSets.main, sourceSets.api)
         }
     }
 }
@@ -89,7 +89,7 @@ dependencies {
     implementation fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
     shade fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
     implementation fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
-	shade fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
+    shade fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
     
     implementation sourceSets.api.output
 }
@@ -115,14 +115,14 @@ jar {
 }
 
 shadowJar {
-	classifier = ''
-	configurations = [project.configurations.shade]
-	relocate 'io.github.championash5357.ashlib', "${project.group}.shadow.io.github.championash5357.ashlib"
-	relocate 'commoble.databuddy', "${project.group}.shadow.commoble.databuddy"
+    classifier = ''
+    configurations = [project.configurations.shade]
+    relocate 'io.github.championash5357.ashlib', "${project.group}.shadow.io.github.championash5357.ashlib"
+    relocate 'commoble.databuddy', "${project.group}.shadow.commoble.databuddy"
 }
 
 reobf {
-	shadowJar {}
+    shadowJar {}
 }
 
 tasks.build.dependsOn reobfShadowJar
@@ -140,9 +140,9 @@ task sourcesJar(type: Jar) {
 }
 
 task apiJar(type: Jar) {
-	classifier = "api"
-	from sourceSets.api.output
-	from sourceSets.api.allJava
+    classifier = "api"
+    from sourceSets.api.output
+    from sourceSets.api.allJava
 }
 
 artifacts {
@@ -181,5 +181,5 @@ signing {
 }
 
 mixin {
-	add sourceSets.main, "${modId}.refmap.json"
+    add sourceSets.main, "${modId}.refmap.json"
 }
