@@ -10,17 +10,24 @@ version="${file.jarVersion}"
 displayName="\u00a7cNaughty \u00a7for \u00a7bNice"
 
 updateJSONURL="https://championash5357.github.io/ChampionAsh5357/projects/maven/io/github/championash5357/naughtyornice/update.json"
-displayURL="https://github.com/ChampionAsh5357/Naughty-or-Nice"
-# logoFile=""
+displayURL="https://www.curseforge.com/minecraft/mc-mods/naughty-or-nice"
+logoFile="logo.png"
 
 credits="Shadowed Jars:
 Databuddy by \u00a7aCommoble \u00a7f(MIT License)
 Thank you for the following ideas:
-\u00a73Guy\u00a7f: \u00a76Some foundational mechanics of the niceness system."
+\u00a73Guy\u00a7f: \u00a76Some foundational mechanics of the niceness system.
+\u00a7fQuotes and Phrases:
+\u00a79bl4ckscor3
+\u00a73Guy
+\u00a79lilypuree
+\u00a79JTK222
+\u00a79BlueDuck
+\u00a7aCommoble"
 authors="\u00a7bChampionAsh5357"
 
 description="\u00a7oYou better watch out, you better not cry.
-\u00a7r\u00a76Welcome to \u00a7cNaughty \u00a7for \u00a7bNice\u00a76! This mod adds a niceness meter into the game. By itself, it does absolutely nothing. However, the outcome of your presents is determined by how nice you are. Some of them won't even open if you aren't nice enough! So, be prepared, and make sure that you are not naughty!"
+\u00a7r\u00a76Welcome to \u00a7cNaughty \u00a7for \u00a7bNice\u00a76! This mod adds a niceness meter into the game. By itself, it does absolutely nothing. However, the outcome of your presents is determined by how nice you are. Some of them won't even open if you aren't nice enough! So, be prepared, and make sure that you are not naughty for this holiday season!"
 
 [[dependencies.naughtyornice]]
     modId="forge"

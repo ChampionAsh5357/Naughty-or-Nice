@@ -1,0 +1,8 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "minecraft:empty",
+		"size": 1,
+		"loot_spawn_location": "book_ground"
+	}
+}

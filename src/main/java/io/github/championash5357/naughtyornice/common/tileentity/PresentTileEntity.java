@@ -18,6 +18,7 @@
 package io.github.championash5357.naughtyornice.common.tileentity;
 
 import io.github.championash5357.naughtyornice.api.capability.CapabilityInstances;
+import io.github.championash5357.naughtyornice.api.capability.INiceness;
 import io.github.championash5357.naughtyornice.common.block.PresentBlock;
 import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
 import net.minecraft.block.BlockState;
@@ -50,9 +51,10 @@ public class PresentTileEntity extends TileEntity implements ITickableTileEntity
 
 	private void unwrap() {
 		if(!this.world.isRemote) {
-			if(this.entity != null) this.entity.getCapability(CapabilityInstances.NICENESS_CAPABILITY).ifPresent(inst -> inst.unwrap());
+			if(this.entity != null) this.entity.getCapability(CapabilityInstances.NICENESS_CAPABILITY).ifPresent(INiceness::unwrap);
 			if(this.world.getBlockState(this.getPos()).equals(this.getBlockState())) this.world.setBlockState(this.getPos(), Blocks.AIR.getDefaultState(), BlockFlags.DEFAULT);
 		}
+		this.entity = null;
 	}
 
 	public void setEntity(Entity entity) {
@@ -118,14 +120,19 @@ public class PresentTileEntity extends TileEntity implements ITickableTileEntity
 			} else if(this.height >= 0.75) {
 				this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPos().getX() + 0.5, this.getPos().getY() + 0.5, this.getPos().getZ() + 0.5, 1.0, 1.0, 1.0);
 			}
+			if(this.height >= 0.8) {
+				this.xValue = 0;
+				this.rotation = 0;
+				this.height = 0;
+			}
 		}
 	}
 
 	public double getRotation(float partialTicks) {
-		return MathHelper.lerp(partialTicks, this.prevRotation, this.rotation);
+		return this.rotation == 0 ? 0 : MathHelper.lerp(partialTicks, this.prevRotation, this.rotation);
 	}
 
 	public double getHeight(float partialTicks) {
-		return MathHelper.lerp(partialTicks, this.prevHeight, this.height);
+		return this.height == 0 ? 0 : MathHelper.lerp(partialTicks, this.prevHeight, this.height);
 	}
 }

@@ -1,0 +1,61 @@
+{
+	"type": "naughtyornice:player_nbt",
+	"config": {
+		"Inventory": [
+			{
+				"Slot": 100,
+				"id": "minecraft:leather_boots",
+				"Count": 1,
+				"tag": {
+					"display": {
+						"color": 16383998,
+						"Name": "{\"translate\": \"naughtyornice.present.dunce_clothes\", \"color\": \"white\"}"
+					}
+				}
+			},
+			{
+				"Slot": 101,
+				"id": "minecraft:leather_leggings",
+				"Count": 1,
+				"tag": {
+					"display": {
+						"color": 16383998,
+						"Name": "{\"translate\": \"naughtyornice.present.dunce_clothes\", \"color\": \"white\"}"
+					}
+				}
+			},
+			{
+				"Slot": 102,
+				"id": "minecraft:leather_chestplate",
+				"Count": 1,
+				"tag": {
+					"display": {
+						"color": 16383998,
+						"Name": "{\"translate\": \"naughtyornice.present.dunce_clothes\", \"color\": \"white\"}"
+					}
+				}
+			},
+			{
+				"Slot": 103,
+				"id": "minecraft:player_head",
+				"Count": 1,
+				"tag": {
+					"display": {
+						"color": 16383998,
+						"Name": "{\"translate\": \"naughtyornice.present.dunce_cap\", \"color\": \"white\"}"
+					},
+					"SkullOwner": {
+						"Id": [ 349566243, -466860011, -2014036506, -934200758 ],
+						"Properties": {
+							"textures": [
+								{
+									"Value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmUwNDBiZjU3ZGUzNDU0ODI0ODUzOGFjOTc1ZjU5ZDYxYjM2OTk5ZmVlNjdjZTAzMTAxYzhmOWUxYzc1YjBjYiJ9fX0="
+								}
+							]
+						}
+					}
+				}
+			}
+		]
+	}
+}

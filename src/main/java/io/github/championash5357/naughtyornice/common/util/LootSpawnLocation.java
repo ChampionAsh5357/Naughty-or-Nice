@@ -23,7 +23,9 @@ public enum LootSpawnLocation implements IStringSerializable {
 	GROUND,
 	INVENTORY,
 	RANDOM_INVENTORY,
-	RANDOM_GROUND;
+	RANDOM_GROUND,
+	BOOK_GROUND,
+	BOOK_INVENTORY;
 
 	public static LootSpawnLocation getValue(String str) {
 		if(str == null) throw new NullPointerException("Inputted string is null.");

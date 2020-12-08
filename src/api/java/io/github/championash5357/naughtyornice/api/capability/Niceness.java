@@ -30,6 +30,7 @@ import io.github.championash5357.naughtyornice.common.block.PresentBlock;
 import io.github.championash5357.naughtyornice.common.init.GeneralRegistrar;
 import io.github.championash5357.naughtyornice.common.tileentity.PresentTileEntity;
 import io.github.championash5357.naughtyornice.common.util.LocalizationStrings;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -37,6 +38,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
+import net.minecraft.world.World;
 
 /**
  * A basic implementation of {@link INiceness}.
@@ -106,18 +108,25 @@ public class Niceness implements INiceness {
 	@Override
 	public boolean openPresent(PresentTileEntity te) {
 		if(player == null || player.world.isRemote) return false;
-		this.presentPos = null; //TODO: Remove once done testing
-		this.present = null;
-		if(this.present != null || this.presentPos != null) return false;
-		//if(te.getNiceness() > 0 && this.getNiceness() - te.getNiceness() <= 0) return false;
+		World world = this.player.world;
+		if(this.presentPos != null) {
+			BlockState state = world.getBlockState(this.presentPos);
+			if(state.getBlock() instanceof PresentBlock && state.get(PresentBlock.OPEN)) return false;
+			else {
+				this.present = null;
+				this.presentPos = null;
+			}
+		}
+		if(this.present != null) return false;
+		if(te.getNiceness() > 0 && this.getNiceness() - te.getNiceness() <= 0) return false;
 		Optional<WrappedPresent<?, ?>> opt = PresentManager.getInstance().getWrappedPresent(te.getNiceness());
 		if(!opt.isPresent()) return false;
-		//if(te.getNiceness() > 0) this.changeNiceness(this.getLuckModifier() - te.getNiceness());
+		if(te.getNiceness() > 0) this.changeNiceness(this.getLuckModifier() - te.getNiceness());
 		this.present = opt.get();
 		this.presentPos = te.getPos();
 		te.setEntity(this.player);
-		this.player.world.setBlockState(this.presentPos, te.getBlockState().with(PresentBlock.OPEN, true));
-		this.player.world.playSound((PlayerEntity) null, this.presentPos, GeneralRegistrar.BLOCK_PRESENT_OPEN.get(), SoundCategory.BLOCKS, 1.0f, 1.0f);
+		world.setBlockState(this.presentPos, te.getBlockState().with(PresentBlock.OPEN, true));
+		world.playSound((PlayerEntity) null, this.presentPos, GeneralRegistrar.BLOCK_PRESENT_OPEN.get(), SoundCategory.BLOCKS, 1.0f, 1.0f);
 		return true;
 	}
 	

@@ -1,0 +1,31 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:binomial",
+        "n": 10,
+        "p": 0.9
+      },
+      "bonus_rolls": {
+        "min": 1,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:poisonous_potato",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:binomial",
+                "n": 64,
+                "p": 0.95
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

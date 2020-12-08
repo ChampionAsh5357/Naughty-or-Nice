@@ -83,7 +83,7 @@ public class EntityPos {
 		double x = referencePos.getX() + pos.x, z = referencePos.getZ() + pos.z;
 		double offset = (referencePos.getX() == x && referencePos.getZ() == z) ? 1 : 0;
 		double y = useWorldHeight ? entity.world.getHeight(Type.MOTION_BLOCKING, (int) x, (int) z) - offset : (referencePos.getY() + pos.y);
-		if(entity instanceof ServerPlayerEntity) ((ServerPlayerEntity) entity).connection.setPlayerLocation(x, y, z, this.yaw.orElse(entity.rotationYaw), this.pitch.orElse(entity.rotationPitch));
+		if(entity instanceof ServerPlayerEntity) ((ServerPlayerEntity) entity).connection.setPlayerLocation(x + 0.5, y, z + 0.5, this.yaw.orElse(entity.rotationYaw), this.pitch.orElse(entity.rotationPitch));
 		else entity.setPositionAndRotation(x, y, z, this.yaw.orElse(entity.rotationYaw), this.pitch.orElse(entity.rotationPitch));
 	}
 

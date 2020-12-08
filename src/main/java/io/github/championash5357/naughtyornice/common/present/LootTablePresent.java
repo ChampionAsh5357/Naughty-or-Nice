@@ -24,6 +24,7 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import io.github.championash5357.naughtyornice.api.present.Present;
+import io.github.championash5357.naughtyornice.api.present.PresentManager;
 import io.github.championash5357.naughtyornice.common.present.LootTablePresent.Wrapper;
 import io.github.championash5357.naughtyornice.common.util.Helper;
 import io.github.championash5357.naughtyornice.common.util.LootSpawnLocation;
@@ -72,12 +73,20 @@ public class LootTablePresent extends Present<Wrapper> {
 				InventoryHelper.spawnItemStack(world, presentPos.getX(), presentPos.getY(), presentPos.getZ(), stack);
 			});
 			return DataResult.success(this, Lifecycle.stable());
+		case BOOK_GROUND:
+			ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
+			PresentManager.getInstance().getBookInformation().ifPresent(book.getOrCreateTag()::merge);
+			InventoryHelper.spawnItemStack(world, presentPos.getX(), presentPos.getY(), presentPos.getZ(), book);
+			return DataResult.success(this, Lifecycle.stable());
 		case INVENTORY:
 			boolean drop = false;
 			for(ItemStack stack : inv.func_233543_f_()) {
 				if(drop) {
 					InventoryHelper.spawnItemStack(player.world, player.getPosX(), player.getPosY(), player.getPosZ(), stack);
-				} else if(!player.addItemStackToInventory(stack)) drop = true;
+				} else if(!player.addItemStackToInventory(stack)) {
+					drop = true;
+					InventoryHelper.spawnItemStack(player.world, player.getPosX(), player.getPosY(), player.getPosZ(), stack);
+				}
 			}
 			return DataResult.success(this, Lifecycle.stable());
 		case RANDOM_INVENTORY:
@@ -90,7 +99,17 @@ public class LootTablePresent extends Present<Wrapper> {
 				stack.setCount(Math.min(Helper.RANDOM.nextInt(64) + 1, stack.getMaxStackSize()));
 				if(isFull) {
 					InventoryHelper.spawnItemStack(player.world, player.getPosX(), player.getPosY(), player.getPosZ(), stack);
-				} else if(!player.addItemStackToInventory(stack)) isFull = true;
+				} else if(!player.addItemStackToInventory(stack)) {
+					isFull = true;
+					InventoryHelper.spawnItemStack(player.world, player.getPosX(), player.getPosY(), player.getPosZ(), stack);
+				}
+			}
+			return DataResult.success(this, Lifecycle.stable());
+		case BOOK_INVENTORY:
+			ItemStack written_book = new ItemStack(Items.WRITTEN_BOOK);
+			PresentManager.getInstance().getBookInformation().ifPresent(written_book.getOrCreateTag()::merge);
+			if(!player.addItemStackToInventory(written_book)) {
+				InventoryHelper.spawnItemStack(world, presentPos.getX(), presentPos.getY(), presentPos.getZ(), written_book);
 			}
 			return DataResult.success(this, Lifecycle.stable());
 		default:

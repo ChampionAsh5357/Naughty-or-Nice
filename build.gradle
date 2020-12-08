@@ -44,12 +44,7 @@ compileJava {
 }
 
 sourceSets {
-	api {
-		java {
-			compileClasspath += main.output
-            runtimeClasspath += main.output
-		}
-	}
+	api
     main.resources.srcDirs += 'src/generated/resources'
 }
 
@@ -91,9 +86,9 @@ minecraft {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc}-${forge}"
-    compile fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
+    implementation fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
     shade fg.deobf("io.github.championash5357:ashlib:${ashlib_version}")
-    compile fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
+    implementation fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
 	shade fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
     
     implementation sourceSets.api.output

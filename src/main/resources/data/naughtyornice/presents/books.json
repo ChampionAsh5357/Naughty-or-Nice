@@ -1,0 +1,96 @@
+{
+	"entries": [
+		{
+			"k": {
+				"title": "Ingredient Report",
+				"author": "Food Critique",
+				"pages": [
+					{
+						"translate": "naughtyornice.quote.17.1"
+					},
+					{
+						"translate": "naughtyornice.quote.17.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"title": "Ingredient Report",
+				"author": "Food Critique",
+				"pages": [
+					{
+						"translate": "naughtyornice.quote.18.1"
+					},
+					{
+						"translate": "naughtyornice.quote.18.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"title": "Ingredient Report",
+				"author": "Food Critique",
+				"pages": [
+					{
+						"translate": "naughtyornice.quote.19.1",
+						"clickEvent": {
+							"action": "run_command",
+							"value": "/give @s minecraft:porkchop"
+						}
+					}
+				]
+			},
+			"v": 1
+		},
+		{
+			"k": {
+				"title": "Allergen Report",
+				"author": "Germaphobe",
+				"pages": [
+					{
+						"translate": "naughtyornice.quote.20.1"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"title": "Allergen Report",
+				"author": "Germaphobe",
+				"pages": [
+					{
+						"translate": "naughtyornice.quote.21.1"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"title": "Summary",
+				"author": "Author",
+				"pages": [
+					{
+						"translate": "naughtyornice.quote.22.1"
+					},
+					{
+						"translate": "naughtyornice.quote.22.2",
+						"extra": [
+							", ",
+							{
+								"translate": "naughtyornice.quote.22.3",
+								"italic": true
+							}
+						]
+					}
+				]
+			},
+			"v": 3
+		}
+	]
+}

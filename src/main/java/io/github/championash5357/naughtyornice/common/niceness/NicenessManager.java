@@ -25,6 +25,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.collect.Lists;
 import com.google.gson.*;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 
 import commoble.databuddy.codec.MapCodecHelper;
 import io.github.championash5357.ashlib.serialization.CodecHelper;
@@ -46,7 +47,9 @@ public class NicenessManager extends JsonReloadListener {
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final Codec<Map<EntityType<?>, EntityNicenessEffect>> ENTITY_NICENESS_EFFECTS_CODEC = Codec.unboundedMap(CodecHelper.registryObject(ForgeRegistries.ENTITIES), EntityNicenessEffect.CODEC);
 	private static final Codec<Map<String, Double>> GLOBAL_EFFECTS_CODEC = Codec.unboundedMap(Codec.STRING, Codec.DOUBLE);
-	private final Codec<StackInformation> stackInformationCodec = FallbackCodec.create(StackInformation.CODEC, ResourceLocation.CODEC.xmap(location -> this.stackInformation.containsKey(location) ? this.stackInformation.get(location) : new StackInformation(ForgeRegistries.ITEMS.getValue(location), null), StackInformation::getId));
+	private final Codec<StackInformation> stackInformationCodec = FallbackCodec.create(StackInformation.CODEC,
+			ResourceLocation.CODEC.comapFlatMap(location -> this.stackInformation.containsKey(location) ? DataResult.success(this.stackInformation.get(location)) : DataResult.error("No stack information exists at the following location: " + location), StackInformation::getId),
+			CodecHelper.registryObject(ForgeRegistries.ITEMS).xmap(item -> new StackInformation(item, null), StackInformation::getItem));
 	private final Codec<Map<StackInformation, Map<VillagerProfession, Double>>> villagerGiftsCodec = MapCodecHelper.makeEntryListCodec(this.stackInformationCodec, Codec.unboundedMap(CodecHelper.registryObject(ForgeRegistries.PROFESSIONS), Codec.DOUBLE));
 	private final Map<EntityType<?>, EntityNicenessEffect> entityNicenessEffects = new HashMap<>();
 	private final Map<String, Double> globalEffects = new HashMap<>();
@@ -89,7 +92,10 @@ public class NicenessManager extends JsonReloadListener {
 	
 	private void parseVillagerGifts(JsonObject obj) {
 		if(JSONUtils.getBoolean(obj, "replace", false)) this.villagerGifts.clear();
-		this.villagerGifts.putAll(this.villagerGiftsCodec.parse(DefinedJsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries")).resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error)).orElse(new HashMap<>()));
+		this.villagerGiftsCodec.parse(DefinedJsonOps.INSTANCE, JSONUtils.getJsonArray(obj, "entries"))
+		.resultOrPartial(Util.func_240982_a_("Error reading villager gifts after loading data packs: ", LOGGER::error))
+		.orElse(new HashMap<>())
+		.entrySet().forEach(entry -> this.villagerGifts.computeIfAbsent(entry.getKey(), s -> new HashMap<>()).putAll(entry.getValue()));
 	}
 	
 	public double getEntityHurt(EntityType<?> type, String... globalEffects) {

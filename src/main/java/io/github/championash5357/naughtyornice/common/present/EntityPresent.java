@@ -18,6 +18,7 @@
 package io.github.championash5357.naughtyornice.common.present;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.mojang.serialization.*;
 
@@ -25,9 +26,10 @@ import io.github.championash5357.naughtyornice.api.present.Present;
 import io.github.championash5357.naughtyornice.common.util.EntityInformation;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.util.Constants;
 
 public class EntityPresent extends Present<List<EntityInformation>> {
 	
@@ -38,8 +40,10 @@ public class EntityPresent extends Present<List<EntityInformation>> {
 	@Override
 	public DataResult<Present<List<EntityInformation>>> give(ServerPlayerEntity player, List<EntityInformation> config, BlockPos presentPos) {
 		ServerWorld world = player.getServerWorld();
+		String player_name = player.getGameProfile().getName();
+		UUID player_uuid = player.getUniqueID();
 		for(EntityInformation info : config) {
-			CompoundNBT nbt = info.getNbt().copy();
+			CompoundNBT nbt = updateValues(info.getNbt().copy(), player_name, player_uuid);
 			boolean empty = nbt.isEmpty();
 			nbt.putString("id", info.getType().getRegistryName().toString());
 			Entity entity = EntityType.loadEntityAndExecute(nbt, world, spawnedEntity -> {
@@ -56,5 +60,19 @@ public class EntityPresent extends Present<List<EntityInformation>> {
 			}
 		}
 		return DataResult.success(this, Lifecycle.stable());
+	}
+	
+	private static CompoundNBT updateValues(CompoundNBT nbt, String player_name, UUID player_uuid) {
+		for(String s : nbt.keySet()) {
+			INBT inbt = nbt.get(s);
+			if(inbt.getId() == Constants.NBT.TAG_COMPOUND) {
+				updateValues((CompoundNBT) inbt, player_name, player_uuid);
+			} else if(inbt.getId() == Constants.NBT.TAG_STRING) {
+				String test = ((StringNBT) inbt).getString();
+				if(test.equals("${player.name}")) nbt.putString(s, player_name);
+				else if(test.equals("${player.uuid}")) nbt.putUniqueId(s, player_uuid);
+			}
+		}
+		return nbt;
 	}
 }

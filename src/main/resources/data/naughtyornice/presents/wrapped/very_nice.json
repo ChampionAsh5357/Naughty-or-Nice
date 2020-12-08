@@ -1,0 +1,29 @@
+{
+	"type": "naughtyornice:multi_chance",
+	"config": [
+		{
+			"k": {
+				"type": "naughtyornice:command",
+				"config": "tellraw @s {\"translate\": \"naughtyornice.present.message.very_nice\", \"color\": \"aqua\"}"
+			},
+			"v": 1.0
+		},
+		{
+			"k": {
+				"type": "naughtyornice:player_nbt",
+				"config": {
+					"ForgeCaps": {
+						"naughtyornice:niceness": {
+							"io.github.championash5357.naughtyornice.api.capability.iniceness": {
+								"default": {
+									"niceness": 95
+								}
+							}
+						}
+					}
+				}
+			},
+			"v": 1.0
+		}
+	]
+}

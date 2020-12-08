@@ -17,6 +17,8 @@
 
 package io.github.championash5357.naughtyornice.common.present;
 
+import java.util.regex.Pattern;
+
 import com.mojang.serialization.*;
 
 import io.github.championash5357.naughtyornice.api.present.Present;
@@ -26,6 +28,9 @@ import net.minecraft.util.math.BlockPos;
 
 public class CommandPresent extends Present<String> {
 
+	private static final String PLAYER_NAME_MATCH = Pattern.quote("${player.name}");
+	private static final String PLAYER_UUID_MATCH = Pattern.quote("${player.uuid}");
+	
 	public CommandPresent(Codec<String> codec) {
 		super(codec);
 	}
@@ -35,7 +40,7 @@ public class CommandPresent extends Present<String> {
 		MinecraftServer server = player.server;
 		String player_name = player.getGameProfile().getName();
 		if(player_name == null) return DataResult.error("The player name is null.", this, Lifecycle.stable());
-		return server.getCommandManager().handleCommand(server.getCommandSource(), "execute as " + player_name + " at " + player_name + " run " + config) == 0 ?
+		return server.getCommandManager().handleCommand(server.getCommandSource(), "execute as " + player_name + " at " + player_name + " run " + config.replaceAll(PLAYER_NAME_MATCH, player_name).replaceAll(PLAYER_UUID_MATCH, player.getUniqueID().toString())) == 0 ?
 				DataResult.error("An exception has occured for the following command: " + config, this, Lifecycle.stable()) : 
 					DataResult.success(this, Lifecycle.stable());
 	}

@@ -65,7 +65,7 @@ public class StructurePresent extends Present<Wrapper> {
 			config.processors.map(loc -> world.func_241828_r().getRegistry(Registry.STRUCTURE_PROCESSOR_LIST_KEY).getOrDefault(loc), sup -> sup.get()).func_242919_a().forEach(settings::addProcessor);
 			template.func_237144_a_(world, pos, settings, Helper.RANDOM);
 		}
-		config.playerPos.ifPresent(e -> e.applyPositionAndRotation(player, pos));
+		config.playerPos.ifPresent(e -> e.applyPositionAndRotation(player, presentPos));
 		return DataResult.success(this, Lifecycle.stable());
 	}
 

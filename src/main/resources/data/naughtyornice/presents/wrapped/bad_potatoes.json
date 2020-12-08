@@ -1,0 +1,8 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "naughtyornice:chests/bad_potatoes",
+		"size": 100,
+		"loot_spawn_location": "inventory"
+	}
+}

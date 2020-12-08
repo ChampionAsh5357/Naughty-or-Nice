@@ -88,7 +88,7 @@ public class WrappedPresent<T, P extends Present<T>> {
 		try {
 			return this.present.give(player, this.config, presentPos);
 		} catch (Exception e) {
-			return DataResult.error(e.getMessage());
+			return DataResult.error(e.getMessage() + ": " + e.getStackTrace());
 		}
 	}
 }

@@ -1,0 +1,8 @@
+{
+	"type": "naughtyornice:loot_table",
+	"config": {
+		"name": "naughtyornice:chests/suiting_up",
+		"size": 100,
+		"loot_spawn_location": "inventory"
+	}
+}

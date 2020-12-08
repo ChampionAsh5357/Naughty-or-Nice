@@ -3,7 +3,1146 @@
 		{
 			"k": "minecraft:coal",
 			"v": {
-				"none": -1
+				"none": -1,
+				"armorer": 0.05,
+				"toolsmith": 0.05,
+				"weaponsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:charcoal",
+			"v": {
+				"none": -1,
+				"armorer": 0.05,
+				"toolsmith": 0.05,
+				"weaponsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:diamond_block",
+			"v": {
+				"none": 0.95
+			}
+		},
+		{
+			"k": "minecraft:diamond",
+			"v": {
+				"none": 0.1,
+				"armorer": 0.2,
+				"toolsmith": 0.2,
+				"weaponsmith": 0.2
+			}
+		},
+		{
+			"k": "minecraft:netherite_ingot",
+			"v": {
+				"armorer": 0.25,
+				"toolsmith": 0.25,
+				"weaponsmith": 0.25
+			}
+		},
+		{
+			"k": "minecraft:netherite_scrap",
+			"v": {
+				"armorer": -1,
+				"toolsmith": -1,
+				"weaponsmith": -1
+			}
+		},
+		{
+			"k": "minecraft:iron_ingot",
+			"v": {
+				"armorer": -0.1,
+				"toolsmith": -0.1,
+				"weaponsmith": -0.1
+			}
+		},
+		{
+			"k": "minecraft:gold_ingot",
+			"v": {
+				"armorer": -0.15,
+				"toolsmith": -0.15,
+				"weaponsmith": -0.15
+			}
+		},
+		{
+			"k": "minecraft:cake",
+			"v": {
+				"none": -5
+			}
+		},
+		{
+			"k": "minecraft:cookie",
+			"v": {
+				"none": 1
+			}
+		},
+		{
+			"k": "minecraft:nether_star",
+			"v": {
+				"none": 5
+			}
+		},
+		{
+			"k": "minecraft:rotten_flesh",
+			"v": {
+				"none": -0.1
+			}
+		},
+		{
+			"k": "minecraft:dirt",
+			"v": {
+				"none": -1,
+				"nitwit": 0.01
+			}
+		},
+		{
+			"k": "minecraft:stone",
+			"v": {
+				"none": -1,
+				"mason": 0.01
+			}
+		},
+		{
+			"k": "minecraft:emerald",
+			"v": {
+				"none": 0.2
+			}
+		},
+		{
+			"k": "minecraft:emerald_block",
+			"v": {
+				"none": 1.9
+			}
+		},
+		{
+			"k": "minecraft:totem_of_undying",
+			"v": {
+				"none": 5
+			}
+		},
+		{
+			"k": "minecraft:bell",
+			"v": {
+				"none": 0.5
+			}
+		},
+		{
+			"k": "minecraft:gold_ore",
+			"v": {
+				"armorer": 0.01,
+				"toolsmith": 0.01,
+				"weaponsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:iron_ore",
+			"v": {
+				"armorer": 0.01,
+				"toolsmith": 0.01,
+				"weaponsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:coal_ore",
+			"v": {
+				"armorer": 0.01,
+				"toolsmith": 0.01,
+				"weaponsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:nether_gold_ore",
+			"v": {
+				"armorer": 0.01,
+				"toolsmith": 0.01,
+				"weaponsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_ore",
+			"v": {
+				"armorer": 0.01,
+				"toolsmith": 0.01,
+				"weaponsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:blast_furnace",
+			"v": {
+				"armorer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:turtle_helmet",
+			"v": {
+				"armorer": 0.1
+			}
+		},
+		{
+			"k": "minecraft:leather_helmet",
+			"v": {
+				"armorer": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_helmet",
+			"v": {
+				"armorer": -0.25
+			}
+		},
+		{
+			"k": "minecraft:chainmail_helmet",
+			"v": {
+				"armorer": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_helmet",
+			"v": {
+				"armorer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_helmet",
+			"v": {
+				"armorer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_helmet",
+			"v": {
+				"armorer": 0.1
+			}
+		},
+		{
+			"k": "minecraft:leather_chestplate",
+			"v": {
+				"armorer": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_chestplate",
+			"v": {
+				"armorer": -0.25
+			}
+		},
+		{
+			"k": "minecraft:chainmail_chestplate",
+			"v": {
+				"armorer": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_chestplate",
+			"v": {
+				"armorer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_chestplate",
+			"v": {
+				"armorer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_chestplate",
+			"v": {
+				"armorer": 0.1
+			}
+		},
+		{
+			"k": "minecraft:leather_leggings",
+			"v": {
+				"armorer": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_leggings",
+			"v": {
+				"armorer": -0.25
+			}
+		},
+		{
+			"k": "minecraft:chainmail_leggings",
+			"v": {
+				"armorer": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_leggings",
+			"v": {
+				"armorer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_leggings",
+			"v": {
+				"armorer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_leggings",
+			"v": {
+				"armorer": 0.1
+			}
+		},
+		{
+			"k": "minecraft:leather_boots",
+			"v": {
+				"armorer": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_boots",
+			"v": {
+				"armorer": -0.25
+			}
+		},
+		{
+			"k": "minecraft:chainmail_boots",
+			"v": {
+				"armorer": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_boots",
+			"v": {
+				"armorer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_boots",
+			"v": {
+				"armorer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_boots",
+			"v": {
+				"armorer": 0.1
+			}
+		},
+		{
+			"k": "minecraft:gold_nugget",
+			"v": {
+				"armorer": -0.1
+			}
+		},
+		{
+			"k": "minecraft:iron_nugget",
+			"v": {
+				"armorer": -0.1
+			}
+		},
+		{
+			"k": "minecraft:armor_stand",
+			"v": {
+				"armorer": 0.02
+			}
+		},
+		{
+			"k": "minecraft:leather_horse_armor",
+			"v": {
+				"armorer": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_horse_armor",
+			"v": {
+				"armorer": -0.25
+			}
+		},
+		{
+			"k": "minecraft:iron_horse_armor",
+			"v": {
+				"armorer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_horse_armor",
+			"v": {
+				"armorer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:smoker",
+			"v": {
+				"butcher": 0.05
+			}
+		},
+		{
+			"k": "minecraft:flint_and_steel",
+			"v": {
+				"butcher": 0.1
+			}
+		},
+		{
+			"k": "minecraft:porkchop",
+			"v": {
+				"butcher": 0.04
+			}
+		},
+		{
+			"k": "minecraft:cooked_porkchop",
+			"v": {
+				"butcher": -0.2
+			}
+		},
+		{
+			"k": "minecraft:cod",
+			"v": {
+				"butcher": 0.04,
+				"fisherman": -0.05
+			}
+		},
+		{
+			"k": "minecraft:cooked_cod",
+			"v": {
+				"butcher": -0.2,
+				"fisherman": -0.05
+			}
+		},
+		{
+			"k": "minecraft:salmon",
+			"v": {
+				"butcher": 0.04,
+				"fisherman": -0.05
+			}
+		},
+		{
+			"k": "minecraft:cooked_salmon",
+			"v": {
+				"butcher": -0.2,
+				"fisherman": -0.05
+			}
+		},
+		{
+			"k": "minecraft:beef",
+			"v": {
+				"butcher": 0.04
+			}
+		},
+		{
+			"k": "minecraft:cooked_beef",
+			"v": {
+				"butcher": -0.2
+			}
+		},
+		{
+			"k": "minecraft:chicken",
+			"v": {
+				"butcher": 0.04
+			}
+		},
+		{
+			"k": "minecraft:cooked_chicken",
+			"v": {
+				"butcher": -0.2
+			}
+		},
+		{
+			"k": "minecraft:rabbit",
+			"v": {
+				"butcher": 0.04
+			}
+		},
+		{
+			"k": "minecraft:cooked_rabbit",
+			"v": {
+				"butcher": -0.2
+			}
+		},
+		{
+			"k": "minecraft:mutton",
+			"v": {
+				"butcher": 0.04
+			}
+		},
+		{
+			"k": "minecraft:cooked_mutton",
+			"v": {
+				"butcher": -0.2
+			}
+		},
+		{
+			"k": "minecraft:cartography_table",
+			"v": {
+				"cartographer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:filled_map",
+			"v": {
+				"cartographer": -0.2
+			}
+		},
+		{
+			"k": "minecraft:map",
+			"v": {
+				"cartographer": 0.1
+			}
+		},
+		{
+			"k": "minecraft:paper",
+			"v": {
+				"cartographer": 0.01,
+				"librarian": -0.01
+			}
+		},
+		{
+			"k": "minecraft:ink_sac",
+			"v": {
+				"cartographer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:feather",
+			"v": {
+				"cartographer": 0.03
+			}
+		},
+		{
+			"k": "minecraft:brewing_stand",
+			"v": {
+				"cleric": 0.05
+			}
+		},
+		{
+			"k": "minecraft:golden_apple",
+			"v": {
+				"cleric": 0.1
+			}
+		},
+		{
+			"k": "minecraft:golden_carrot",
+			"v": {
+				"cleric": 0.1
+			}
+		},
+		{
+			"k": "minecraft:enchanted_golden_apple",
+			"v": {
+				"cleric": 1.0
+			}
+		},
+		{
+			"k": "minecraft:ghast_tear",
+			"v": {
+				"cleric": 0.02
+			}
+		},
+		{
+			"k": "minecraft:blaze_rod",
+			"v": {
+				"cleric": 0.02
+			}
+		},
+		{
+			"k": "minecraft:blaze_powder",
+			"v": {
+				"cleric": 0.01
+			}
+		},
+		{
+			"k": "minecraft:potion",
+			"v": {
+				"cleric": -0.1
+			}
+		},
+		{
+			"k": "minecraft:splash_potion",
+			"v": {
+				"cleric": -0.1
+			}
+		},
+		{
+			"k": "minecraft:lingering_potion",
+			"v": {
+				"cleric": -0.1
+			}
+		},
+		{
+			"k": "minecraft:glass_bottle",
+			"v": {
+				"cleric": 0.01
+			}
+		},
+		{
+			"k": "minecraft:magma_cream",
+			"v": {
+				"cleric": 0.01
+			}
+		},
+		{
+			"k": "minecraft:glistering_melon_slice",
+			"v": {
+				"cleric": 0.1
+			}
+		},
+		{
+			"k": "minecraft:composter",
+			"v": {
+				"farmer": 0.05
+			}
+		},
+		{
+			"k": "minecraft:sugar_cane",
+			"v": {
+				"farmer": 0.01,
+				"librarian": -0.02
+			}
+		},
+		{
+			"k": "minecraft:bamboo",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:kelp",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:cactus",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:pumpkin",
+			"v": {
+				"farmer": -0.05
+			}
+		},
+		{
+			"k": "minecraft:apple",
+			"v": {
+				"farmer": -0.05
+			}
+		},
+		{
+			"k": "minecraft:wheat_seeds",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:wheat",
+			"v": {
+				"farmer": -0.05
+			}
+		},
+		{
+			"k": "minecraft:bread",
+			"v": {
+				"farmer": -0.2
+			}
+		},
+		{
+			"k": "minecraft:melon_slice",
+			"v": {
+				"farmer": -0.05
+			}
+		},
+		{
+			"k": "minecraft:pumpkin_seeds",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:melon_seeds",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:potato",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:baked_potato",
+			"v": {
+				"farmer": -0.1
+			}
+		},
+		{
+			"k": "minecraft:poisonous_potato",
+			"v": {
+				"farmer": -1.0
+			}
+		},
+		{
+			"k": "minecraft:beetroot",
+			"v": {
+				"farmer": -0.05
+			}
+		},
+		{
+			"k": "minecraft:beetroot_seeds",
+			"v": {
+				"farmer": 0.01
+			}
+		},
+		{
+			"k": "minecraft:barrel",
+			"v": {
+				"fisherman": 0.05
+			}
+		},
+		{
+			"k": "minecraft:tropical_fish",
+			"v": {
+				"fisherman": -0.05
+			}
+		},
+		{
+			"k": "minecraft:pufferfish",
+			"v": {
+				"fisherman": -0.05
+			}
+		},
+		{
+			"k": "minecraft:carrot_on_a_stick",
+			"v": {
+				"fisherman": 0.1
+			}
+		},
+		{
+			"k": "minecraft:warped_fungus_on_a_stick",
+			"v": {
+				"fisherman": 0.1
+			}
+		},
+		{
+			"k": "minecraft:fletching_table",
+			"v": {
+				"fletcher": 0.05
+			}
+		},
+		{
+			"k": "minecraft:bow",
+			"v": {
+				"fletcher": 0.02
+			}
+		},
+		{
+			"k": "minecraft:arrow",
+			"v": {
+				"fletcher": 0.01
+			}
+		},
+		{
+			"k": "minecraft:spectral_arrow",
+			"v": {
+				"fletcher": 0.05
+			}
+		},
+		{
+			"k": "minecraft:tipped_arrow",
+			"v": {
+				"fletcher": 0.1
+			}
+		},
+		{
+			"k": "minecraft:cauldron",
+			"v": {
+				"leatherworker": 0.05
+			}
+		},
+		{
+			"k": "minecraft:leather",
+			"v": {
+				"leatherworker": 0.01
+			}
+		},
+		{
+			"k": "minecraft:lectern",
+			"v": {
+				"librarian": 0.05
+			}
+		},{
+			"k": "minecraft:lapis_ore",
+			"v": {
+				"librarian": -0.05
+			}
+		},
+		{
+			"k": "minecraft:lapis_lazuli",
+			"v": {
+				"librarian": 0.01
+			}
+		},
+		{
+			"k": "minecraft:writable_book",
+			"v": {
+				"librarian": -0.5
+			}
+		},
+		{
+			"k": "minecraft:written_book",
+			"v": {
+				"librarian": 0.1
+			}
+		},
+		{
+			"k": "minecraft:knowledge_book",
+			"v": {
+				"librarian": 0.5
+			}
+		},
+		{
+			"k": "minecraft:book",
+			"v": {
+				"librarian": 0.05
+			}
+		},
+		{
+			"k": "minecraft:stonecutter",
+			"v": {
+				"mason": 0.05
+			}
+		},
+		{
+			"k": "minecraft:granite",
+			"v": {
+				"mason": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diorite",
+			"v": {
+				"mason": 0.01
+			}
+		},
+		{
+			"k": "minecraft:andesite",
+			"v": {
+				"mason": 0.01
+			}
+		},
+		{
+			"k": "minecraft:loom",
+			"v": {
+				"shepherd": 0.05
+			}
+		},
+		{
+			"k": "minecraft:white_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:orange_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:magenta_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:light_blue_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:yellow_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:lime_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:pink_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:gray_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:light_gray_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:cyan_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:purple_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:blue_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:brown_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:green_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:red_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:black_wool",
+			"v": {
+				"shepherd": 0.01
+			}
+		},
+		{
+			"k": "minecraft:smithing_table",
+			"v": {
+				"toolsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:anvil",
+			"v": {
+				"toolsmith": 0.25,
+				"weaponsmith": 0.25
+			}
+		},
+		{
+			"k": "minecraft:shears",
+			"v": {
+				"toolsmith": 0.02
+			}
+		},
+		{
+			"k": "minecraft:shield",
+			"v": {
+				"toolsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:trident",
+			"v": {
+				"toolsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:grindstone",
+			"v": {
+				"weaponsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:stone_shovel",
+			"v": {
+				"toolsmith": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_shovel",
+			"v": {
+				"toolsmith": -0.25
+			}
+		},
+		{
+			"k": "minecraft:wooden_shovel",
+			"v": {
+				"toolsmith": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_shovel",
+			"v": {
+				"toolsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_shovel",
+			"v": {
+				"toolsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_shovel",
+			"v": {
+				"toolsmith": 0.1
+			}
+		},
+		{
+			"k": "minecraft:stone_pickaxe",
+			"v": {
+				"toolsmith": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_pickaxe",
+			"v": {
+				"toolsmith": -0.25
+			}
+		},
+		{
+			"k": "minecraft:wooden_pickaxe",
+			"v": {
+				"toolsmith": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_pickaxe",
+			"v": {
+				"toolsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_pickaxe",
+			"v": {
+				"toolsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_pickaxe",
+			"v": {
+				"toolsmith": 0.1
+			}
+		},
+		{
+			"k": "minecraft:stone_axe",
+			"v": {
+				"toolsmith": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_axe",
+			"v": {
+				"toolsmith": -0.25
+			}
+		},
+		{
+			"k": "minecraft:wooden_axe",
+			"v": {
+				"toolsmith": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_axe",
+			"v": {
+				"toolsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_axe",
+			"v": {
+				"toolsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_axe",
+			"v": {
+				"toolsmith": 0.1
+			}
+		},
+		{
+			"k": "minecraft:stone_hoe",
+			"v": {
+				"toolsmith": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_hoe",
+			"v": {
+				"toolsmith": -0.25
+			}
+		},
+		{
+			"k": "minecraft:wooden_hoe",
+			"v": {
+				"toolsmith": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_hoe",
+			"v": {
+				"toolsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_hoe",
+			"v": {
+				"toolsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_hoe",
+			"v": {
+				"toolsmith": 0.1
+			}
+		},
+		{
+			"k": "minecraft:stone_sword",
+			"v": {
+				"weaponsmith": -0.5
+			}
+		},
+		{
+			"k": "minecraft:golden_sword",
+			"v": {
+				"weaponsmith": -0.25
+			}
+		},
+		{
+			"k": "minecraft:wooden_sword",
+			"v": {
+				"weaponsmith": -0.75
+			}
+		},
+		{
+			"k": "minecraft:iron_sword",
+			"v": {
+				"weaponsmith": 0.01
+			}
+		},
+		{
+			"k": "minecraft:diamond_sword",
+			"v": {
+				"weaponsmith": 0.05
+			}
+		},
+		{
+			"k": "minecraft:netherite_sword",
+			"v": {
+				"weaponsmith": 0.1
 			}
 		}
 	]

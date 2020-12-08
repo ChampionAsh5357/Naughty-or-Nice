@@ -18,6 +18,7 @@
 package io.github.championash5357.naughtyornice.common.util;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -31,54 +32,63 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class StackInformation {
+public class StackInformation implements Predicate<ItemStack> {
 
 	public static final Codec<StackInformation> CODEC = RecordCodecBuilder.create(builder -> {
 		return builder.group(CodecHelper.registryObject(ForgeRegistries.ITEMS).fieldOf("item").forGetter(inst -> inst.item),
-				CompoundNBT.CODEC.optionalFieldOf("tag", null).forGetter(inst -> inst.tag))
+				CompoundNBT.CODEC.optionalFieldOf("nbt", null).forGetter(inst -> inst.nbt))
 				.apply(builder, StackInformation::new);
 	});
 	private final Item item;
 	@Nullable
-	private final CompoundNBT tag;
+	private final CompoundNBT nbt;
 	
 	public StackInformation(final ItemStack stack) {
 		this(stack.getItem(), stack.getShareTag());
 	}
 	
-	public StackInformation(final Item item, @Nullable final CompoundNBT tag) {
+	public StackInformation(final Item item, @Nullable final CompoundNBT nbt) {
 		if(item == null) throw new IllegalArgumentException("Item cannot be null.");
 		this.item = item;
-		this.tag = tag == null ? null : tag.copy();
+		this.nbt = nbt == null ? null : nbt.copy();
 	}
 	
 	public ResourceLocation getId() {
 		return this.item.getRegistryName();
 	}
+	
+	public Item getItem() {
+		return this.item;
+	}
 
-	private boolean test(ItemStack stack) {
+	@Override
+	public boolean test(ItemStack stack) {
 		return this.item == stack.getItem() && this.areShareTagsEqual(stack.getShareTag());
 	}
 	
+	private boolean test(StackInformation info) {
+		return this.item == info.item && this.areShareTagsEqual(info.nbt);
+	}
+	
 	private boolean areShareTagsEqual(@Nullable CompoundNBT nbt) {
-		if(this.tag == null) return nbt == null;
-		else return nbt != null && this.tag.equals(nbt);
+		if(this.nbt == null) return true;
+		else return nbt != null && this.nbt.equals(nbt);
 	}
 	
 	@Override
 	public int hashCode() {
-		return this.tag == null ? this.item.hashCode() : Objects.hash(this.item.hashCode(), this.tag.hashCode());
+		return this.nbt == null ? this.item.hashCode() : Objects.hash(this.item.hashCode(), this.nbt.hashCode());
 	}
 	
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof ItemStack) return this.test((ItemStack) o);
-		else if(o instanceof StackInformation) return this.item.equals(((StackInformation) o).item) && this.tag.equals(((StackInformation) o).tag);
+		else if(o instanceof StackInformation) return this.test(((StackInformation) o));
 		else return super.equals(o);
 	}
 	
 	@Override
 	public String toString() {
-		return "StackInformation[" + this.item + ", " + (this.tag == null ? "empty" : this.tag) + "]";
+		return "StackInformation[" + this.item + ", " + (this.nbt == null ? "empty" : this.nbt) + "]";
 	}
 }

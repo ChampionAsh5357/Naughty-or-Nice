@@ -2,7 +2,223 @@
 	"entries": [
 		{
 			"k": {
-				"text": ["Sample Text"]
+				"text": [
+					{
+						"translate": "naughtyornice.quote.1.1"
+					},
+					{
+						"translate": "naughtyornice.quote.1.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.2.1"
+					},
+					{
+						"translate": "naughtyornice.quote.2.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.3.1"
+					},
+					{
+						"translate": "naughtyornice.quote.3.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.4.1"
+					},
+					{
+						"translate": "naughtyornice.quote.4.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.5.1"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.6.1"
+					},
+					{
+						"translate": "naughtyornice.quote.6.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.7.1"
+					},
+					{
+						"translate": "naughtyornice.quote.7.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.8.1"
+					},
+					{
+						"translate": "naughtyornice.quote.8.2"
+					}
+				]
+			},
+			"v": 4
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.9.1"
+					},
+					{
+						"translate": "naughtyornice.quote.9.2"
+					}
+				]
+			},
+			"v": 4
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.10.1"
+					},
+					{
+						"translate": "naughtyornice.quote.10.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.11.1"
+					}
+				]
+			},
+			"v": 2
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.12.1"
+					}
+				]
+			},
+			"v": 2
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.13.1"
+					},
+					{
+						"translate": "naughtyornice.quote.13.2"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.14.1"
+					}
+				]
+			},
+			"v": 5
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.15.1",
+						"extra": [
+							" ",
+							{
+								"translate": "naughtyornice.quote.15.2",
+								"italic": true
+							}
+						]
+					},
+					{
+						"translate": "naughtyornice.quote.15.3",
+						"italic": true,
+						"extra": [
+							" ",
+							{
+								"translate": "naughtyornice.quote.15.4",
+								"italic": false
+							}
+						]
+					},
+					{
+						"translate": "naughtyornice.quote.15.5",
+						"italic": true
+					},
+					{
+						"translate": "naughtyornice.quote.15.6"
+					}
+				]
+			},
+			"v": 3
+		},
+		{
+			"k": {
+				"text": [
+					{
+						"translate": "naughtyornice.quote.16.1",
+						"clickEvent": {
+							"action": "run_command",
+							"value": "tellraw @s {\"translate\": \"naughtyornice.quote.16.3\"}"
+						}
+					},
+					{
+						"translate": "naughtyornice.quote.16.2"
+					}
+				]
 			},
 			"v": 1
 		}

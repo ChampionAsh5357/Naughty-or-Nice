@@ -28,8 +28,15 @@ import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+/**
+ * Deserializes sign information into a readable format
+ * for json lines.
+ */
 public class SignInformation {
 
+	/**
+	 * The sign information codec.
+	 */
 	public static final Codec<SignInformation> CODEC = RecordCodecBuilder.create(builder -> {
 		return builder.group(Codec.STRING.xmap(str -> DyeColor.byTranslationKey(str, DyeColor.BLACK), DyeColor::getTranslationKey).optionalFieldOf("color", DyeColor.BLACK).forGetter(inst -> inst.color),
 				GeneralCodecs.TEXT_COMPONENT_CODEC.listOf().flatXmap(list -> {
@@ -44,6 +51,13 @@ public class SignInformation {
 	private final DyeColor color;
 	private final ITextComponent[] text;
 
+	/**
+	 * A simple constructor. Should only be referenced
+	 * through the codec. Left public for data generators.
+	 * 
+	 * @param color The text color
+	 * @param text The sign text
+	 */
 	public SignInformation(final DyeColor color, final ITextComponent[] text) {
 		if(text.length > 4) throw new IllegalArgumentException("A sign should only have at most four text components.");
 		this.text = new ITextComponent[4];
@@ -58,11 +72,22 @@ public class SignInformation {
 		}
 	}
 
+	/**
+	 * Attaches the sign information directly
+	 * to the tile entity.
+	 * 
+	 * @param te The tile entity
+	 */
 	public void attach(final SignTileEntity te) {
 		te.setTextColor(this.color);
 		for(int i = 0; i < this.text.length; i++) te.setText(i, this.text[i]);
 	}
 
+	/**
+	 * Converts the information into nbt data.
+	 * 
+	 * @return A {@link CompoundNBT} of the data
+	 */
 	public CompoundNBT toNBT() {
 		CompoundNBT nbt = new CompoundNBT();
 		for(int i = 0; i < 4; ++i) nbt.putString("Text" + (i + 1), ITextComponent.Serializer.toJson(this.text[i]));

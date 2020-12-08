@@ -1,9 +1,205 @@
 {
 	"entries": [
 		{
-			"k": "naughtyornice:krampus_fight",
+			"k": "naughtyornice:coal",
+			"v": {
+				"weight": 100,
+				"max": 20.0
+			}
+		},
+		{
+			"k": "naughtyornice:dunce_outfit",
+			"v": {
+				"weight": 1,
+				"max": -50.0
+			}
+		},
+		{
+			"k": "naughtyornice:lots_of_dogs",
+			"v": {
+				"weight": 25,
+				"min": 5.0
+			}
+		},
+		{
+			"k": "naughtyornice:bad_potatoes",
+			"v": {
+				"weight": 20,
+				"max": 20.0
+			}
+		},
+		{
+			"k": "naughtyornice:single_present",
+			"v": {
+				"weight": 25
+			}
+		},
+		{
+			"k": "naughtyornice:single_sign",
+			"v": {
+				"weight": 25
+			}
+		},
+		{
+			"k": "naughtyornice:random_book",
+			"v": {
+				"weight": 25
+			}
+		},
+		{
+			"k": "naughtyornice:too_much_cobblestone",
+			"v": {
+				"weight": 50,
+				"max": 75.0
+			}
+		},
+		{
+			"k": "naughtyornice:all_the_dirt",
+			"v": {
+				"weight": 50,
+				"max": 40.0
+			}
+		},
+		{
+			"k": "naughtyornice:random_items",
+			"v": {
+				"weight": 20
+			}
+		},
+		{
+			"k": "naughtyornice:random_blocks",
+			"v": {
+				"weight": 20
+			}
+		},
+		{
+			"k": "naughtyornice:do_over",
 			"v": {
 				"weight": 1
+			}
+		},
+		{
+			"k": "naughtyornice:very_nice",
+			"v": {
+				"weight": 1
+			}
+		},
+		{
+			"k": "naughtyornice:very_naughty",
+			"v": {
+				"weight": 1
+			}
+		},
+		{
+			"k": "naughtyornice:iron_ingots",
+			"v": {
+				"weight": 30,
+				"min": 25.0
+			}
+		},
+		{
+			"k": "naughtyornice:gold_ingots",
+			"v": {
+				"weight": 35,
+				"min": 30.0
+			}
+		},
+		{
+			"k": "naughtyornice:trades",
+			"v": {
+				"weight": 20,
+				"min": 35.0
+			}
+		},
+		{
+			"k": "naughtyornice:small_christmas_tree",
+			"v": {
+				"weight": 30,
+				"min": -40.0
+			}
+		},
+		{
+			"k": "naughtyornice:chimney",
+			"v": {
+				"weight": 50,
+				"max": 80.0
+			}
+		},
+		{
+			"k": "naughtyornice:lava_trap",
+			"v": {
+				"weight": 20,
+				"max": 5.0
+			}
+		},
+		{
+			"k": "naughtyornice:potion_of_luck",
+			"v": {
+				"weight": 15,
+				"min": 15.0
+			}
+		},
+		{
+			"k": "naughtyornice:diamond_with_a_sword_chance",
+			"v": {
+				"weight": 10,
+				"min": 50.0
+			}
+		},
+		{
+			"k": "naughtyornice:obsidian_encased",
+			"v": {
+				"weight": 25,
+				"min": 20.0
+			}
+		},
+		{
+			"k": "naughtyornice:netherite_with_bonus_chance",
+			"v": {
+				"weight": 5,
+				"min": 75.0
+			}
+		},
+		{
+			"k": "naughtyornice:suiting_up",
+			"v": {
+				"weight": 1,
+				"min": 90.0
+			}
+		},
+		{
+			"k": "naughtyornice:potion_of_unluck",
+			"v": {
+				"weight": 20,
+				"max": 0.0
+			}
+		},
+		{
+			"k": "naughtyornice:krampus_fight",
+			"v": {
+				"weight": 1,
+				"max": -50.0
+			}
+		},
+		{
+			"k": "naughtyornice:single_tnt",
+			"v": {
+				"weight": 40,
+				"max": 10.0
+			}
+		},
+		{
+			"k": "naughtyornice:concentrated_tnt",
+			"v": {
+				"weight": 20,
+				"max": -20.0
+			}
+		},
+		{
+			"k": "naughtyornice:creeper_party",
+			"v": {
+				"weight": 30,
+				"max": -10.0
 			}
 		}
 	]

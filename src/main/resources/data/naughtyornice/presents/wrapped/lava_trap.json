@@ -1,0 +1,27 @@
+{
+	"type": "naughtyornice:multi_chance",
+	"config": [
+		{
+			"k": {
+				"type": "naughtyornice:structure",
+				"config": {
+					"name": "naughtyornice:general/lava_trap",
+					"ignore_entities": true,
+					"offset": [ -2, -1, -2 ],
+					"player_position": {
+						"position": [ 0, 1, 0 ]
+					},
+					"processors": "naughtyornice:empty"
+				}
+			},
+			"v": 1.0
+		},
+		{
+			"k": {
+				"type": "naughtyornice:command",
+				"config": "tellraw @s {\"translate\": \"naughtyornice.present.message.familiar\", \"color\": \"white\"}"
+			},
+			"v": 1.0
+		}
+	]
+}

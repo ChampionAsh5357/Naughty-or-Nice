@@ -1,0 +1,9 @@
+{
+	"type": "naughtyornice:structure",
+	"config": {
+		"name": "naughtyornice:general/obsidian_encased",
+		"ignore_entities": true,
+		"offset": [ -2, 0, -2 ],
+		"processors": "naughtyornice:swap_block"
+	}
+}

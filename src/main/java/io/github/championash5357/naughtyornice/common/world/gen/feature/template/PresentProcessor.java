@@ -17,6 +17,7 @@
 
 package io.github.championash5357.naughtyornice.common.world.gen.feature.template;
 
+import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -33,11 +34,13 @@ import net.minecraft.world.gen.feature.template.Template.EntityInfo;
 
 public class PresentProcessor extends StructureProcessor {
 
-	public static final Codec<PresentProcessor> CODEC = RecordCodecBuilder.create(builder -> {
+	public static final PresentProcessor INSTANCE = new PresentProcessor(-100, 100);
+	private static final Codec<PresentProcessor> OBJECT_CODEC = RecordCodecBuilder.create(builder -> {
 		return builder.group(Codec.INT.optionalFieldOf("min", -100).forGetter(inst -> inst.min),
 				Codec.INT.optionalFieldOf("max", 100).forGetter(inst -> inst.max))
 				.apply(builder, PresentProcessor::new);
 	});
+	public static final Codec<PresentProcessor> CODEC = Codec.either(OBJECT_CODEC, Codec.unit(() -> INSTANCE)).xmap(either -> either.map(p -> p, p -> p), processor -> Either.left(processor));
 	private final int min, max;
 
 	public PresentProcessor(final int min, final int max) {
