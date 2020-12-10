@@ -35,8 +35,7 @@ import io.github.championash5357.naughtyornice.common.niceness.NicenessManager;
 import io.github.championash5357.naughtyornice.data.client.BlockStates;
 import io.github.championash5357.naughtyornice.data.server.LootTables;
 import io.github.championash5357.naughtyornice.server.dedicated.DedicatedServerReference;
-import net.minecraft.block.Block;
-import net.minecraft.block.CropsBlock;
+import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -65,9 +64,9 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.SleepFinishedTimeEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.*;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -80,6 +79,9 @@ public class NaughtyOrNice {
 	private static NaughtyOrNice instance;
 	private final NicenessManager nicenessManager;
 	private final RegistryHelper registryHelper;
+	
+	private double chunkCheck;
+	private int chunkChances;
 
 	public NaughtyOrNice() {
 		final IEventBus mod = FMLJavaModLoadingContext.get().getModEventBus(),
@@ -88,6 +90,7 @@ public class NaughtyOrNice {
 		instance = this;
 		this.nicenessManager = new NicenessManager();
 		this.registryHelper = new RegistryHelper(ID, mod);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfiguration.COMMON_SPEC);
 		
 		GeneralRegistrar.class.getClass();
 
@@ -165,6 +168,8 @@ public class NaughtyOrNice {
 
 		mod.addListener(this::common);
 		mod.addListener(this::gatherData);
+		mod.addListener(this::configLoad);
+		mod.addListener(this::configReload);
 		forge.addListener(this::tickPlayer);
 		forge.addListener(this::addListeners);
 		forge.addListener(this::livingHeal);
@@ -190,21 +195,36 @@ public class NaughtyOrNice {
 		return this.registryHelper;
 	}
 	
+	private void configLoad(final ModConfig.Loading event) {
+		if(event.getConfig().getSpec() == CommonConfiguration.COMMON_SPEC) {
+			this.chunkCheck = CommonConfiguration.COMMON.chunkCheck.get();
+			this.chunkChances = CommonConfiguration.COMMON.chunkChances.get();
+		}
+	}
+	
+	private void configReload(final ModConfig.Reloading event) {
+		if(event.getConfig().getSpec() == CommonConfiguration.COMMON_SPEC) {
+			this.chunkCheck = CommonConfiguration.COMMON.chunkCheck.get();
+			this.chunkChances = CommonConfiguration.COMMON.chunkChances.get();
+		}
+	}
+	
 	private void slept(final SleepFinishedTimeEvent event) {
 		if(event.getWorld().isRemote()) return;
 		IWorld world = event.getWorld();
 		world.getPlayers().forEach(player -> {
 			final ChunkPos playerChunk = new ChunkPos(player.getPosition());
-			IntStream.range(0, 9).filter(chunkOffset -> Helper.RANDOM.nextDouble() < 0.5).forEach(chunkOffset -> {
+			IntStream.range(0, 9).filter(chunkOffset -> Helper.RANDOM.nextDouble() < this.chunkCheck).forEach(chunkOffset -> {
 				final BlockPos chunkPos = new ChunkPos(playerChunk.x + (chunkOffset % 3) - 1, playerChunk.z + ((chunkOffset / 3) % 3) - 1).asBlockPos();
-				IntStream.range(0, Helper.RANDOM.nextInt(64) + 1).forEach(rand -> this.tryAndSpawnPresent(world, world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos(Helper.RANDOM.nextInt(16) + chunkPos.getX(), chunkPos.getY(), Helper.RANDOM.nextInt(16) + chunkPos.getZ()))));
+				IntStream.range(0, Helper.RANDOM.nextInt(this.chunkChances) + 1).forEach(rand -> this.tryAndSpawnPresent(world, world.getHeight(Type.MOTION_BLOCKING_NO_LEAVES, new BlockPos(Helper.RANDOM.nextInt(16) + chunkPos.getX(), chunkPos.getY(), Helper.RANDOM.nextInt(16) + chunkPos.getZ()))));
 			});
 		});
 	}
 	
 	private void tryAndSpawnPresent(IBiomeReader reader, BlockPos pos) {
-		if(IntStream.range(0, 27).anyMatch(i -> reader.getBlockState(pos.add((i % 3) - 1, ((i / 3) % 3) - 1, ((i / 9) % 3) - 1)).isIn(BlockTags.LOGS))) {
-			reader.setBlockState(pos, GeneralRegistrar.PRESENT.get().getDefaultState(), BlockFlags.DEFAULT);
+		BlockState state = GeneralRegistrar.PRESENT.get().getDefaultState();
+		if(state.isValidPosition(reader, pos) && IntStream.range(0, 27).anyMatch(i -> reader.getBlockState(pos.add((i % 3) - 1, ((i / 3) % 3) - 1, ((i / 9) % 3) - 1)).isIn(BlockTags.LOGS))) {
+			reader.setBlockState(pos, state, BlockFlags.DEFAULT);
 			TileEntity te = reader.getTileEntity(pos);
 			if(te instanceof PresentTileEntity) ((PresentTileEntity) te).setNiceness(Helper.RANDOM.nextInt(201) - 100);
 		}

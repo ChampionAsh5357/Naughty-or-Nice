@@ -88,7 +88,12 @@ public class PresentBlock extends Block implements IWaterLoggable {
 		if (stateIn.get(WATERLOGGED)) {
 			worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
 		}
-		return stateIn;
+		return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : stateIn;
+	}
+	
+	@Override
+	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+		return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
 	}
 
 	@Override
